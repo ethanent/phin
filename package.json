@@ -1,0 +1,26 @@
+{
+  "name": "phin",
+  "version": "1.0.0",
+  "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FuturisticCake/phin.git"
+  },
+  "keywords": [
+    "http",
+    "https",
+    "request",
+    "fetch",
+    "ajax",
+    "url",
+    "uri"
+  ],
+  "author": "Ethan Davis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FuturisticCake/phin/issues"
+  },
+  "homepage": "https://github.com/FuturisticCake/phin#readme"
+}
