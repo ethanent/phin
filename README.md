@@ -1,2 +1,4 @@
 # phin
-Ultra-simple, lightweight, dependancy-free Node.JS HTTP request client
+
+> Ultra-simple, lightweight, dependency-free Node.JS HTTP request client
+
