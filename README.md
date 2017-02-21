@@ -7,12 +7,12 @@
 [![NPM](https://nodei.co/npm/phin.png)](https://www.npmjs.com/package/phin)
 
 ## Simple Usage
-For basic GET request.
+For a simple GET request.
 
 ```javascript
 var p = require("phin");
 
-p("https://www.ony.io:5135", function(err, body, response) {
+p("https://www.ony.io", function(err, body, response) {
 	if (!err) console.log(body);
 });
 ```
@@ -26,6 +26,17 @@ npm install phin
 
 
 ## Demonstrations
+
+### GET request with custom headers
+
+```javascript
+p({
+	"url": "https://ony.io",
+	"headers": {
+		"User-Agent": "phin"
+	}
+})
+```
 
 ### POST request with data
 
@@ -42,7 +53,7 @@ p({
 });
 ```
 
-### GET request with authorization
+### GET request with authorization using `auth` option
 
 ```javascript
 p({
@@ -53,15 +64,14 @@ p({
 });
 ```
 
-### GET request with custom headers
+### GET request with authorization through `url`
 
 ```javascript
 p({
-	"url": "https://ony.io",
-	"headers": {
-		"User-Agent": "Phin"
-	}
-})
+	"url": "https://ethan:letmein@ony.io:8080"
+}, function(err, body, response) {
+	if (!err) console.log(body);
+});
 ```
 
 
