@@ -14,8 +14,8 @@ For a simple GET request.
 ```javascript
 var p = require("phin");
 
-p("https://www.ony.io", function(err, body, response) {
-	if (!err) console.log(body);
+p("https://www.ony.io", function(err, response) {
+	if (!err) console.log(response.body);
 });
 ```
 
@@ -50,8 +50,8 @@ p({
 	"data": JSON.stringify({
 		"name": "John Doe"
 	})
-}, function(err, body, response) {
-	if (!err) console.log("Sent data!");
+}, function(err) {
+	if (!err) console.log("Data sent!");
 });
 ```
 
@@ -61,8 +61,8 @@ p({
 p({
 	"url": "https://ony.io:8080",
 	"auth": "ethan:letmein"
-}, function(err, body, response) {
-	if (!err) console.log(body);
+}, function(err, response) {
+	if (!err) console.log(response.body);
 });
 ```
 
@@ -71,8 +71,8 @@ p({
 ```javascript
 p({
 	"url": "https://ethan:letmein@ony.io:8080"
-}, function(err, body, response) {
-	if (!err) console.log(body);
+}, function(err, response) {
+	if (!err) console.log(response.body);
 });
 ```
 
@@ -83,17 +83,17 @@ p({
 
 #### (options, callback)
 
-* `options` **required** - {} - object containing request options OR string URL to send GET request to
-	* `url` **required** - _String_ - URL to request (Can include port, auth. These will be used if their respective options are not present.)
-	* `method` - _String_ - Default: `'GET'` - Request method. Ex. `'GET'`
-	* `port` - _Integer_ (or integer as string) - Default: For HTTP, `80`. For HTTPS, `443`. - Request port
-	* `headers` - _Object_ - Request headers
-	* `data` - _String_ / non-circular JS object - Request data (request body)
-	* `auth` - _String_ - Authorization in `'user:pass'` format
-* `callback` **required** - function(err, body, response) {} - callback method
-	* `err` - _String_ / null - Is null if no error occurs during request.
-	* `body` - _String_ - Response content
-	* `response` - HTTP / HTTPS response object. See [Node.JS HTTP docs - HTTP.serverResponse class](https://nodejs.org/dist/latest-v7.x/docs/api/http.html#http_class_http_serverresponse).
+- `options` - **required** *JS Object* or *String* - object containing request options or a URL to send a GET request to
+	- `url` **required** *String* - URL to request (Can include port, auth. These will be used if their respective options are not present.)
+	- `method` - *String* - Default: `'GET'` - Request method. Ex. `'GET'`
+	- `port` - *Integer* (or integer as string) - Default: For HTTP, `80`. For HTTPS, `443`. - Request port
+	- `headers` - *Object* - Request headers
+	- `data` - *String* / non-circular JS object - Request data (request body)
+	- `auth` - *String* - Authorization in `'user:pass'` format
+- `callback` - **required** *Function* - (err, response) callback method
+	- `err` - *Error* or *null* - An error object if an error occured or null if no error occured.
+	- `response` - HTTP / HTTPS response object. See [Node.JS HTTP docs - HTTP.serverResponse class](https://nodejs.org/dist/latest-v7.x/docs/api/http.html#http-class-http-serverresponse).
+		- `body` - Phin adds a `body` field to the `response` object. It is the response content.
 
 
 ## License (MIT)
