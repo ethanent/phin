@@ -3,6 +3,7 @@
 > Ultra-simple, lightweight, dependency-free Node.JS HTTP request client
 
 [![phin on NPM](https://nodei.co/npm/phin.png)](https://www.npmjs.com/package/phin)
+
 [![phin - Downloads Total](https://img.shields.io/npm/dt/phin.svg)](https://www.npmjs.com/package/phin) [![phin - Version](https://img.shields.io/npm/v/phin.svg)](https://www.npmjs.com/package/phin) [![phin - License](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/phin)
 
 ---
