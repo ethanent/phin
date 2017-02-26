@@ -1,9 +1,11 @@
 {
   "name": "phin",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test" : "node index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FuturisticCake/phin.git"
@@ -22,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/FuturisticCake/phin/issues"
   },
-  "homepage": "https://github.com/FuturisticCake/phin#readme"
+  "homepage": "https://github.com/FuturisticCake/phin#readme",
+  "engines" : {
+    "node" : ">=4.0.0"
+  }
 }

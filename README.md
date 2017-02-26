@@ -37,7 +37,11 @@ p({
 	"headers": {
 		"User-Agent": "phin"
 	}
-})
+}).then(function(data) {
+	console.log("Recieved data: " + data);
+}, function(err) {
+	console.log("An error occured: " + err);
+});
 ```
 
 ### POST request with data
@@ -50,8 +54,10 @@ p({
 	"data": JSON.stringify({
 		"name": "John Doe"
 	})
+}).then(function() {
+	console.log("Data sent!");
 }, function(err) {
-	if (!err) console.log("Data sent!");
+	console.log("An error occured: " + err);
 });
 ```
 
@@ -61,8 +67,10 @@ p({
 p({
 	"url": "https://ony.io:8080",
 	"auth": "ethan:letmein"
-}, function(err, response) {
-	if (!err) console.log(response.body);
+}).then(function(data) {
+	console.log("Recieved data: " + data);
+}, function(err) {
+	console.log("An error occured: " + err);
 });
 ```
 
@@ -71,8 +79,10 @@ p({
 ```javascript
 p({
 	"url": "https://ethan:letmein@ony.io:8080"
-}, function(err, response) {
-	if (!err) console.log(response.body);
+}).then(function(data) {
+	console.log("Recieved data: " + data);
+}, function(err) {
+	console.log("An error occured: " + err);
 });
 ```
 
@@ -81,7 +91,7 @@ p({
 
 ## API
 
-#### (options, callback)
+#### (options)
 
 - `options` - **required** *JS Object* or *String* - object containing request options or a URL to send a GET request to
 	- `url` **required** *String* - URL to request (Can include port, auth. These will be used if their respective options are not present.)
@@ -90,10 +100,9 @@ p({
 	- `headers` - *Object* - Request headers
 	- `data` - *String* / non-circular JS object - Request data (request body)
 	- `auth` - *String* - Authorization in `'user:pass'` format
-- `callback` - **required** *Function* - (err, response) callback method
-	- `err` - *Error* or *null* - An error object if an error occured or null if no error occured.
-	- `response` - HTTP / HTTPS response object. See [Node.JS HTTP docs - HTTP.serverResponse class](https://nodejs.org/dist/latest-v7.x/docs/api/http.html#http-class-http-serverresponse).
-		- `body` - Phin adds a `body` field to the `response` object. It is the response content.
+- ***returns*** - a promise object
+	- resolves if data is recieved successfully with the data
+	- rejects if an error occurs with an error
 
 
 ## License (MIT)
