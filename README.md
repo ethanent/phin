@@ -14,8 +14,10 @@ For a simple GET request.
 ```javascript
 var p = require("phin");
 
-p("https://www.ony.io", function(err, response) {
-	if (!err) console.log(response.body);
+p("https://www.ony.io").then(function(response) {
+	console.log("Recieved data: " + response.data);
+}, function(err) {
+	console.log("An error occured: " + err);
 });
 ```
 
@@ -37,8 +39,8 @@ p({
 	"headers": {
 		"User-Agent": "phin"
 	}
-}).then(function(data) {
-	console.log("Recieved data: " + data);
+}).then(function(response) {
+	console.log("Recieved data: " + response.data);
 }, function(err) {
 	console.log("An error occured: " + err);
 });
@@ -67,8 +69,8 @@ p({
 p({
 	"url": "https://ony.io:8080",
 	"auth": "ethan:letmein"
-}).then(function(data) {
-	console.log("Recieved data: " + data);
+}).then(function(response) {
+	console.log("Recieved data: " + response.data);
 }, function(err) {
 	console.log("An error occured: " + err);
 });
@@ -79,8 +81,8 @@ p({
 ```javascript
 p({
 	"url": "https://ethan:letmein@ony.io:8080"
-}).then(function(data) {
-	console.log("Recieved data: " + data);
+}).then(function(response) {
+	console.log("Recieved data: " + response.data);
 }, function(err) {
 	console.log("An error occured: " + err);
 });
