@@ -12,10 +12,12 @@
 For a simple GET request.
 
 ```javascript
-var p = require("phin");
+const p = require("phin");
 
-p("https://www.ony.io", function(err, body, response) {
-	if (!err) console.log(body);
+p("https://www.ony.io").then(res => {
+	console.log("Retireved body data: ", res.body);
+}, err => {
+	console.log("Uh oh! An error: ", err);
 });
 ```
 
@@ -37,7 +39,7 @@ p({
 	"headers": {
 		"User-Agent": "phin"
 	}
-})
+});
 ```
 
 ### POST request with data
@@ -50,8 +52,10 @@ p({
 	"data": JSON.stringify({
 		"name": "John Doe"
 	})
-}, function(err, body, response) {
-	if (!err) console.log("Sent data!");
+}).then(() => {
+	console.log("Sent data!");
+}, err => {
+	console.log("Uh oh! An error: ", err);
 });
 ```
 
@@ -59,10 +63,12 @@ p({
 
 ```javascript
 p({
-	"url": "https://ony.io:8080",
+	"url": "https://ony.io",
 	"auth": "ethan:letmein"
-}, function(err, body, response) {
-	if (!err) console.log(body);
+}).then(res => {
+	console.log("Retireved body data: ", res.body);
+}, err => {
+	console.log("Uh oh! An error: ", err);
 });
 ```
 
@@ -71,8 +77,10 @@ p({
 ```javascript
 p({
 	"url": "https://ethan:letmein@ony.io:8080"
-}, function(err, body, response) {
-	if (!err) console.log(body);
+}).then(res => {
+	console.log("Retireved body data: ", res.body);
+}, err => {
+	console.log("Uh oh! An error: ", err);
 });
 ```
 
@@ -83,17 +91,13 @@ p({
 
 #### (options, callback)
 
-* `options` **required** - {} - object containing request options OR string URL to send GET request to
+* `options` **required** - _Object or String_ - object containing request options OR string URL to send GET request to
 	* `url` **required** - _String_ - URL to request (Can include port, auth. These will be used if their respective options are not present.)
-	* `method` - _String_ - Default: `'GET'` - Request method. Ex. `'GET'`
-	* `port` - _Integer_ (or integer as string) - Default: For HTTP, `80`. For HTTPS, `443`. - Request port
-	* `headers` - _Object_ - Request headers
-	* `data` - _String_ / non-circular JS object - Request data (request body)
-	* `auth` - _String_ - Authorization in `'user:pass'` format
-* `callback` **required** - function(err, body, response) {} - callback method
-	* `err` - _String_ / null - Is null if no error occurs during request.
-	* `body` - _String_ - Response content
-	* `response` - HTTP / HTTPS response object. See [Node.JS HTTP docs - HTTP.serverResponse class](https://nodejs.org/dist/latest-v7.x/docs/api/http.html#http_class_http_serverresponse).
+	* See other available options [here](https://nodejs.org/dist/latest-v6.x/docs/api/http.html#http_http_request_options_callback)
+* **returns** a promise
+	* `resolves` if the request was successful with a [Node.js `IncomingMessage`](https://nodejs.org/dist/latest-v6.x/docs/api/http.html#http_class_http_incomingmessage) object
+		* `body` phin injects the `body` property, containing the response body
+	* `rejects` if the request failed, with an error
 
 
 ## License (MIT)
