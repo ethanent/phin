@@ -47,9 +47,10 @@ p({
 	"url": "https://ony.io",
 	"method": "POST",
 	"port": 8080,
-	"data": JSON.stringify({
-		"name": "John Doe"
-	})
+	"data": {
+		"name": "John Doe",
+		"someKey": "someValue"
+	}
 }, (err, body, response) => {
 	if (!err) console.log("Sent data!");
 });
