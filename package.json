@@ -3,7 +3,9 @@
   "version": "1.0.7",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "node ./tests/test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FuturisticCake/phin.git"
@@ -22,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/FuturisticCake/phin/issues"
   },
-  "homepage": "https://github.com/FuturisticCake/phin#readme"
+  "homepage": "https://github.com/FuturisticCake/phin#readme",
+  "devDependencies": {
+    "whew": "^1.0.0"
+  }
 }
