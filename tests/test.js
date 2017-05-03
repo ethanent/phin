@@ -4,9 +4,8 @@ var w;
 
 try {
 	w = require("whew");
-}
-catch (err) {
-	console.log("The whew testing library should be installed for testing the phin library!");
+} catch (err) {
+	console.error("The whew testing library should be installed for testing the phin library!");
 	process.exit(0);
 }
 
@@ -30,8 +29,7 @@ var server = http.createServer((req, res) => {
 				res.writeHead(200);
 				if (postbody === "Sending some data...") {
 					res.end("success");
-				}
-				else {
+				} else {
 					res.end("failed");
 				}
 			});
@@ -40,8 +38,8 @@ var server = http.createServer((req, res) => {
 });
 
 server.on("error", (err) => {
-	console.log("The test couldn't complete. Testing server failed to function properly. (This isn't an issue with phin itself.)");
-	console.log(err);
+	console.error("The test couldn't complete. Testing server failed to function properly. (This isn't an issue with phin itself.)");
+	console.error(err);
 	process.exit(1);
 });
 
@@ -50,12 +48,12 @@ w.add("Simple server connection", (res) => {
 		if (!err && r.statusCode === 200) {
 			if (body === "Responding!") {
 				res(true, "Successfully connected to test server and used response.");
-			}
-			else {
+			} else {
 				res(false, "Didn't recieve expected body from test server.");
 			}
+		} else {
+			res(false, "Couldn't find expected status response from phin.");
 		}
-		else res(false, "Couldn't find expected status response from phin.");
 	});
 });
 
@@ -71,8 +69,7 @@ w.add("POST body connection", (res) => {
 		}
 		if (body === "success") {
 			res(true, "Successfully uploaded correct data.");
-		}
-		else {
+		} else {
 			res(false, "Failed to upload data.");
 		}
 	});
