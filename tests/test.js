@@ -1,52 +1,45 @@
-const p = require("../index.js");
+const p = require("../index.js"),
+w = require("whew"),
+Stream = require("stream"),
+assert = require("assert");
 
-var w;
+class MockRequest extends Stream.Writable {
+	constructor() {
+		super();
+		this.body = new Buffer([]);
+	}
 
-try {
-	w = require("whew");
-} catch (err) {
-	console.error("The whew testing library should be installed for testing the phin library!");
-	process.exit(0);
+	_write(chunk, encoding, callback) {
+		this.body = Buffer.concat([this.body, new Buffer(chunk, encoding)]);
+		callback();
+	}
 }
 
-const http = require("http");
-
-console.log("Starting testing server...");
-
-var server = http.createServer((req, res) => {
-	switch (req.method) {
-		case "GET":
-			res.writeHead(200);
-			res.end("Responding!");
-			break;
-		case "POST":
-			var postbody = "";
-			req.on("data", (chunk) => {
-				postbody += chunk;
-			});
-
-			req.on("end", () => {
-				res.writeHead(200);
-				if (postbody === "Sending some data...") {
-					res.end("success");
-				} else {
-					res.end("failed");
-				}
-			});
-			break;
+const http = Object.assign({
+	"request" : (options, requestHandler) => {
+		const request = new MockRequest();
+		const response = new Stream.Duplex({ read() { }, write() { } });
+		response.headers = { };
+		response.statusCode = 200;
+		setTimeout(() => {
+			requestHandler(response);
+			if (options.method === "GET") {
+				response.emit("data", new Buffer("Responding!"));
+				response.emit("end");
+			} else if (options.method === "POST") {
+				assert.ok(request.body.equals(new Buffer("Sending some data...")), "POST data not sent.");
+				response.emit("data", new Buffer("Success!"));
+				response.emit("end");
+			}
+		}, 0);
+		return request;
 	}
 });
 
-server.on("error", (err) => {
-	console.error("The test couldn't complete. Testing server failed to function properly. (This isn't an issue with phin itself.)");
-	console.error(err);
-	process.exit(1);
-});
-
 w.add("Simple server connection", (res) => {
-	p("http://127.0.0.1:1808", (err, r) => {
+	p("http://127.0.0.1", (err, r) => {
 		if (!err && r.statusCode === 200) {
-			if (r.body === "Responding!") {
+			if (r.body.equals(new Buffer("Responding!"))) {
 				res(true, "Successfully connected to test server and used response.");
 			} else {
 				res(false, "Didn't recieve expected body from test server.");
@@ -54,12 +47,12 @@ w.add("Simple server connection", (res) => {
 		} else {
 			res(false, "Couldn't find expected status response from phin.");
 		}
-	});
+	}, http);
 });
 
 w.add("POST body connection", (res) => {
 	p({
-		"url": "http://127.0.0.1:1808",
+		"url": "http://127.0.0.1",
 		"method": "POST",
 		"data": "Sending some data..."
 	}, (err, r) => {
@@ -67,14 +60,12 @@ w.add("POST body connection", (res) => {
 			res(false, "phin gave error response for request. " + err);
 			return;
 		}
-		if (r.body === "success") {
+		if (r.body.equals(new Buffer("Success!"))) {
 			res(true, "Successfully uploaded correct data.");
 		} else {
 			res(false, "Failed to upload data.");
 		}
-	});
+	}, http);
 });
 
-server.listen(1808, "127.0.0.1", () => {
-	w.test();
-});
+w.test();
