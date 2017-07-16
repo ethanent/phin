@@ -96,7 +96,7 @@ p({
 * `callback` - (err, body, response) {} - callback method
 	* `err` - _String_ / null - Is null if no error occurs during request.
 	* `body` - _String_ - Response content
-	* `response` - HTTP / HTTPS response object. See [Node.JS HTTP docs - HTTP.serverResponse class](https://nodejs.org/dist/latest-v7.x/docs/api/http.html#http_class_http_serverresponse).
+	* `response` - HTTP / HTTPS response object. See [HTTP.IncomingMessage](https://nodejs.org/dist/latest-v7.x/docs/api/http.html#http_class_http_incomingmessage).
 
 
 ## License (MIT)
