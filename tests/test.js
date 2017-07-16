@@ -44,9 +44,9 @@ server.on("error", (err) => {
 });
 
 w.add("Simple server connection", (res) => {
-	p("http://127.0.0.1:1808", (err, body, r) => {
+	p("http://127.0.0.1:1808", (err, r) => {
 		if (!err && r.statusCode === 200) {
-			if (body === "Responding!") {
+			if (r.body === "Responding!") {
 				res(true, "Successfully connected to test server and used response.");
 			} else {
 				res(false, "Didn't recieve expected body from test server.");
@@ -62,12 +62,12 @@ w.add("POST body connection", (res) => {
 		"url": "http://127.0.0.1:1808",
 		"method": "POST",
 		"data": "Sending some data..."
-	}, (err, body, r) => {
+	}, (err, r) => {
 		if (err) {
 			res(false, "phin gave error response for request. " + err);
 			return;
 		}
-		if (body === "success") {
+		if (r.body === "success") {
 			res(true, "Successfully uploaded correct data.");
 		} else {
 			res(false, "Failed to upload data.");
