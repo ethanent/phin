@@ -1,7 +1,9 @@
 const p = require("../index.js"),
 w = require("whew"),
 Stream = require("stream"),
-assert = require("assert");
+assert = require("assert"),
+zlib = require("zlib"),
+util = require("util");
 
 class MockRequest extends Stream.Writable {
 	constructor() {
@@ -20,10 +22,18 @@ const http = Object.assign({
 		const request = new MockRequest();
 		const response = new Stream.Duplex({ read() { }, write() { } });
 		response.headers = { };
+		if (options.path === "/compressed") {
+			response.headers["content-encoding"] = "gzip";
+		}
 		response.statusCode = 200;
 		setTimeout(() => {
 			requestHandler(response);
-			if (options.method === "GET") {
+			if (options.path === "/compressed") {
+				zlib.gzip("test data", (err, gzipped) => {
+					response.emit("data", gzipped);
+					response.emit("end");
+				});
+			} else if (options.method === "GET") {
 				response.emit("data", new Buffer("Responding!"));
 				response.emit("end");
 			} else if (options.method === "POST") {
@@ -36,17 +46,21 @@ const http = Object.assign({
 	}
 });
 
+const simpleServerConnectionTest = (r, res, err) => {
+	if (!err && r.statusCode === 200) {
+		if (r.body.equals(new Buffer("Responding!"))) {
+			res(true, "Successfully recieved the correct response.");
+		} else {
+			res(false, "Didn't recieve expected body from test server.");
+		}
+	} else {
+		res(false, "Couldn't find expected status response from phin.");
+	}
+}
+
 w.add("Simple server connection", (res) => {
 	p("http://127.0.0.1", (err, r) => {
-		if (!err && r.statusCode === 200) {
-			if (r.body.equals(new Buffer("Responding!"))) {
-				res(true, "Successfully connected to test server and used response.");
-			} else {
-				res(false, "Didn't recieve expected body from test server.");
-			}
-		} else {
-			res(false, "Couldn't find expected status response from phin.");
-		}
+		simpleServerConnectionTest(r, res, err);
 	}, http);
 });
 
@@ -61,11 +75,32 @@ w.add("POST body connection", (res) => {
 			return;
 		}
 		if (r.body.equals(new Buffer("Success!"))) {
-			res(true, "Successfully uploaded correct data.");
+			res(true, "Successfully uploaded and recieved correct correct data.");
 		} else {
 			res(false, "Failed to upload data.");
 		}
 	}, http);
+});
+
+w.add("compression options", (res) => {
+	p({
+		"url": "http://127.0.0.1/compressed",
+		"compressed": true
+	}, (err, r) => {
+		if (r.body.equals(new Buffer("test data"))) {
+			res(true, "Compression and decompression successful.");
+		} else {
+			res(false, "Compression and/or decompression failed.");
+		}
+	}, http);
+});
+
+w.add("util.promisify works on phin", (res) => {
+	util.promisify(p)("http://127.0.0.1", http).then((r) => {
+		simpleServerConnectionTest(r, res);
+	}, (err) => {
+		res(false, "An error occured: " + err + ".");
+	});
 });
 
 w.test();

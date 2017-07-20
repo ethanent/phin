@@ -88,6 +88,7 @@ p({
 ## Documentation
 
 See [the documentation](https://FuturisticCake.github.io/phin).
+Note that `phin` has [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original) support.
 
 ## License (MIT)
 
