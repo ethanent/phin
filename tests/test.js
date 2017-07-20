@@ -56,7 +56,7 @@ const simpleServerConnectionTest = (r, res, err) => {
 	} else {
 		res(false, "Couldn't find expected status response from phin.");
 	}
-}
+};
 
 w.add("Simple server connection", (res) => {
 	p("http://127.0.0.1", (err, r) => {
