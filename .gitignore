@@ -8,6 +8,9 @@
 tsconfig.json
 jsconfig.json
 
+# Benny stop, lol
+.eslintrc.json
+
 ### Node ###
 # Logs
 logs
