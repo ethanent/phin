@@ -1,6 +1,6 @@
 # phin
 
-> Ultra-simple, lightweight, dependency-free Node.JS HTTP request client
+> Ultra-simple, lightweight, dependency-free Node.JS HTTP request client (with util.promisify support)
 
 <img src="http://i.imgur.com/SSBM2Pw.png" width="200" alt="phin logo"></img>
 
@@ -87,7 +87,7 @@ p({
 
 ## Documentation
 
-See [the documentation](https://FuturisticCake.github.io/phin/).
+See [the documentation](https://futuristiccake.github.io/phin/global.html).
 Note that `phin` has [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original) support.
 
 ## License (MIT)
