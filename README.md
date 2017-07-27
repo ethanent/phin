@@ -16,8 +16,8 @@ For a simple GET request.
 ```javascript
 var p = require("phin");
 
-p("https://www.ony.io", (err, body, response) => {
-	if (!err) console.log(body);
+p("https://www.ony.io", (err, res) => {
+	if (!err) console.log(res.body);
 });
 ```
 
@@ -56,7 +56,7 @@ p({
 	"headers": {
 		"Content-Type" : "application/json" // or x/www-url-form-encoded if you want "data" encoded as a query string
 	}
-}, (err, body, response) => {
+}, (err, res) => {
 	if (!err) console.log("Sent data!");
 });
 ```
@@ -67,8 +67,8 @@ p({
 p({
 	"url": "https://ony.io:8080",
 	"auth": "ethan:letmein"
-}, (err, body, response) => {
-	if (!err) console.log(body);
+}, (err, res) => {
+	if (!err) console.log(res.body);
 });
 ```
 
@@ -77,8 +77,8 @@ p({
 ```javascript
 p({
 	"url": "https://ethan:letmein@ony.io:8080"
-}, (err, body, response) => {
-	if (!err) console.log(body);
+}, (err, res) => {
+	if (!err) console.log(res.body);
 });
 ```
 
