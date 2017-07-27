@@ -1,6 +1,6 @@
 {
   "name": "phin",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
   "main": "index.js",
   "scripts": {
