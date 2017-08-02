@@ -87,7 +87,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -101,14 +103,16 @@
 
     
 
-    <h4 class="name" id="phin"><span class="type-signature"></span>phin<span class="signature">(opts, cb)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="phin"><span class="type-signature"></span>phin<span class="signature">(options, callback<span class="signature-attributes">opt</span>, httpModule<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Sends a request to a server.
+    Sends an HTTP request
 </div>
 
 
@@ -132,7 +136,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -144,49 +152,116 @@
 
         <tr>
             
-                <td class="name"><code>opts</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Options">Options</a></span>
+<span class="param-type"><a href="global.html#phinOptions">phinOptions</a></span>
 |
 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">Request options or URL.</td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">phin options object (or string for auto-detection)</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cb</code></td>
+                <td class="name"><code>callback</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PhinCallback">PhinCallback</a></span>
+<span class="param-type"><a href="global.html#phinResponseCallback">phinResponseCallback</a></span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">Called when data is recieved from server.</td>
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last">Callback to which data is sent upon request completion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>httpModule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    require('http')
+                
+                </td>
+            
+
+            <td class="description last">HTTP module injection (for testing)</td>
         </tr>
 
     
@@ -227,7 +302,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="phin.js.html">phin.js</a>, <a href="phin.js.html#line53">line 53</a>
+        <a href="phin.js.html">phin.js</a>, <a href="phin.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -237,6 +312,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -261,314 +338,14 @@
 
         
                 
-<h4 class="name" id="IncomingMessage">IncomingMessage</h4>
+<h4 class="name" id="phinOptions">phinOptions</h4>
 
 
 
 
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Object</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>body</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Buffer</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The data sent by the server.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>headers</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Response headers.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>httpVersion</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">HTTP version being used.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>rawHeaders</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The raw request/response headers list exactly as they were received.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>rawTrailers</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;String></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The raw request/response trailer keys and values exactly as they were received.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>socket</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">net.Socket</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The <a href="https://nodejs.org/api/net.html#net_class_net_socket">net.Socket</a> object associated with the connection.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>statusCode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The 3-digit HTTP response status code (eg. 404).</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>statusMessage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The HTTP response status message (ex. OK, Internal Server Error).</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>trailers</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The request/response trailers object.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="phin.js.html">phin.js</a>, <a href="phin.js.html#line28">line 28</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-            
-                
-<h4 class="name" id="Options">Options</h4>
-
-
-
+<div class="description">
+    phin options object
+</div>
 
 
 
@@ -604,6 +381,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -620,7 +399,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -635,194 +414,12 @@
             
 
             
-
-            <td class="description last">The URL of the server to send a request to.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>compressed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
+                <td class="default">
                 
                 </td>
             
 
-            
-
-            <td class="description last">Compress the request. Will overwrite the 'Accept-Encoding' header. Defaults to 'false'.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>protocol</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">'http:' or 'https:'. Inferred from the URL if not present.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>hostname</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">A domain name or IP address of the server to issue the request to. Inferred from the URL if not present.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>port</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">The port to send the request to. Defaults to 80 on HTTP and 443 on HTTPS.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>localAddress</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Local interface to bind for network connections.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>socketPath</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Unix Domain Socket (use one of host:port or socketPath).</td>
+            <td class="description last">URL to request (autodetect infers from this URL)</td>
         </tr>
 
     
@@ -835,7 +432,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -852,39 +449,14 @@
             
 
             
-
-            <td class="description last">The request method (ex. GET, POST, etc.). Defaults to "GET".</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
+                <td class="default">
                 
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
+                    GET
                 
                 </td>
             
 
-            
-
-            <td class="description last">Request path. Inferred from the URL if not present.</td>
+            <td class="description last">Request method ('GET', 'POST', etc.)</td>
         </tr>
 
     
@@ -914,8 +486,14 @@
             
 
             
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
 
-            <td class="description last">An object with request headers.</td>
+            <td class="description last">Request headers</td>
         </tr>
 
     
@@ -928,7 +506,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -945,15 +523,58 @@
             
 
             
+                <td class="default">
+                
+                    autodetect
+                
+                </td>
+            
 
-            <td class="description last">Basic authentication (ex. ethan:letmein). Inferred from the URL if not present.</td>
+            <td class="description last">Request authentiction in "user:password" format</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>timeout</code></td>
+                <td class="name"><code>hostname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    autodetect
+                
+                </td>
+            
+
+            <td class="description last">URL hostname</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
             
 
             <td class="type">
@@ -976,24 +597,27 @@
             
 
             
+                <td class="default">
+                
+                    autodetect
+                
+                </td>
+            
 
-            <td class="description last">The socket timeout, in milliseconds.</td>
+            <td class="description last">URL port</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>path</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Buffer</span>
-|
-
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
@@ -1010,8 +634,14 @@
             
 
             
+                <td class="default">
+                
+                    autodetect
+                
+                </td>
+            
 
-            <td class="description last">The data to send to the client. JSON.stringify is automatically called on objects when the 'Content-Type' or 'content-type' header is 'application/json' and querystring.stringify is called on objects when the 'Content-Type' or 'content-type' header is 'x/www-url-form-encoded'.</td>
+            <td class="description last">URL path</td>
         </tr>
 
     
@@ -1071,11 +701,17 @@
 
     
 
-    <h4 class="name" id="PhinCallback"><span class="type-signature"></span>PhinCallback<span class="signature">(err, res)</span><span class="type-signature"></span></h4>
+    
+    <h4 class="name" id="phinResponseCallback"><span class="type-signature"></span>phinResponseCallback<span class="signature">(error<span class="signature-attributes">nullable</span>, phinResponse<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h4>
+    
 
     
 
 
+
+<div class="description">
+    Response data callback
+</div>
 
 
 
@@ -1098,6 +734,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1110,46 +748,69 @@
 
         <tr>
             
-                <td class="name"><code>err</code></td>
+                <td class="name"><code>error</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Error</span>
+|
+
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">An error that occured. Not present if no error occured.</td>
+            <td class="description last">Error if any occurred in request, otherwise null.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>res</code></td>
+                <td class="name"><code>phinResponse</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#IncomingMessage">IncomingMessage</a></span>
+<span class="param-type">http.serverResponse</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">The response from the server.</td>
+            <td class="description last">phin response object. Like <a href="https://nodejs.org/api/http.html#http_class_http_serverresponse">http.ServerResponse</a> but has a body property containing response body</td>
         </tr>
 
     
@@ -1190,7 +851,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="phin.js.html">phin.js</a>, <a href="phin.js.html#line42">line 42</a>
+        <a href="phin.js.html">phin.js</a>, <a href="phin.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -1200,6 +861,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -1236,7 +899,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Jul 19 2017 18:25:54 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Aug 02 2017 14:20:33 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>
