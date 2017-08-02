@@ -9,13 +9,13 @@
 [Full documentation](https://futuristiccake.github.io/phin/) | [GitHub](https://github.com/FuturisticCake/phin) | [NPM](https://www.npmjs.com/package/phin)
 
 ## Simple Usage
-For a simple GET request.
+For a simple page GET request.
 
 ```javascript
 var p = require("phin");
 
-p("https://www.ony.io", (err, res) => {
-	if (!err) console.log(res.body);
+p("https://www.github.com/FuturisticCake", (err, res) => {
+	if (!err) console.log(res.body.toString());
 });
 ```
 
@@ -27,13 +27,13 @@ npm install phin
 ```
 
 
-## Demonstrations
+## Quick Demos
 
 ### GET request with added headers
 
 ```javascript
 p({
-	"url": "https://ony.io",
+	"url": "https://www.github.com/FuturisticCake",
 	"headers": {
 		"User-Agent": "phin"
 	}
@@ -44,7 +44,7 @@ p({
 
 ```javascript
 p({
-	"url": "https://ony.io",
+	"url": "https://www.github.com/FuturisticCake",
 	"method": "POST",
 	"port": 8080,
 	"data": {
@@ -52,7 +52,7 @@ p({
 		"someKey": "someValue"
 	},
 	"headers": {
-		"Content-Type" : "application/json" // or x/www-url-form-encoded if you want "data" encoded as a query string
+		"Content-Type" : "application/json"
 	}
 }, (err, res) => {
 	if (!err) console.log("Sent data!");
@@ -63,7 +63,7 @@ p({
 
 ```javascript
 p({
-	"url": "https://ony.io:8080",
+	"url": "https://example.com",
 	"auth": "ethan:letmein"
 }, (err, res) => {
 	if (!err) console.log(res.body);
@@ -74,7 +74,7 @@ p({
 
 ```javascript
 p({
-	"url": "https://ethan:letmein@ony.io:8080"
+	"url": "https://ethan:letmein@example.com:8080"
 }, (err, res) => {
 	if (!err) console.log(res.body);
 });
