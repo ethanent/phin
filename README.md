@@ -6,7 +6,7 @@
 
 ---
 
-[Full documentation](https://futuristiccake.github.io/phin/) | [GitHub](https://github.com/Ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
+[Full documentation](https://ethanent.github.io/phin/) | [GitHub](https://github.com/Ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
 
 ## Simple Usage
 For a simple page GET request.
@@ -14,7 +14,7 @@ For a simple page GET request.
 ```javascript
 var p = require("phin");
 
-p("https://www.github.com/FuturisticCake", (err, res) => {
+p("https://www.github.com/Ethanent", (err, res) => {
 	if (!err) console.log(res.body.toString());
 });
 ```
@@ -33,7 +33,7 @@ npm install phin
 
 ```javascript
 p({
-	"url": "https://www.github.com/FuturisticCake",
+	"url": "https://www.github.com/Ethanent",
 	"headers": {
 		"User-Agent": "phin"
 	}
@@ -44,7 +44,7 @@ p({
 
 ```javascript
 p({
-	"url": "https://www.github.com/FuturisticCake",
+	"url": "https://www.github.com/Ethanent",
 	"method": "POST",
 	"port": 8080,
 	"data": {
@@ -85,6 +85,6 @@ p({
 
 ## Documentation
 
-See [the phin documentation](https://futuristiccake.github.io/phin/).
+See [the phin documentation](https://ethanent.github.io/phin/).
 
 Note that `phin` has [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original) support.
