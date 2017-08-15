@@ -6,7 +6,7 @@
 
 ---
 
-[Full documentation](https://futuristiccake.github.io/phin/) | [GitHub](https://github.com/FuturisticCake/phin) | [NPM](https://www.npmjs.com/package/phin)
+[Full documentation](https://futuristiccake.github.io/phin/) | [GitHub](https://github.com/Ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
 
 ## Simple Usage
 For a simple page GET request.

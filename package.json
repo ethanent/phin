@@ -1,6 +1,6 @@
 {
   "name": "phin",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FuturisticCake/phin.git"
+    "url": "git+https://github.com/Ethanent/phin.git"
   },
   "keywords": [
     "http",
@@ -22,9 +22,9 @@
   "author": "Ethan Davis",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/FuturisticCake/phin/issues"
+    "url": "https://github.com/Ethanent/phin/issues"
   },
-  "homepage": "https://github.com/FuturisticCake/phin#readme",
+  "homepage": "https://github.com/Ethanent/phin#readme",
   "devDependencies": {
     "whew": "^1.0.0"
   }
