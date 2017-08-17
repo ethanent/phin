@@ -41,7 +41,7 @@ const http = Object.assign({
 				response.emit("data", new Buffer("Success!"));
 				response.emit("end");
 			}
-		}, 0);
+		}, 150);
 		return request;
 	}
 });
@@ -82,7 +82,7 @@ w.add("POST body connection", (res) => {
 	}, http);
 });
 
-w.add("compression options", (res) => {
+w.add("Compression options", (res) => {
 	p({
 		"url": "http://127.0.0.1/compressed",
 		"compressed": true
@@ -102,5 +102,20 @@ w.add("util.promisify works on phin", (res) => {
 		res(false, "An error occured: " + err + ".");
 	});
 });
+
+/*w.add("Set request timeout", (res) => {
+	p({
+		"url": "http://127.0.0.1",
+		"method": "GET",
+		"timeout": 30
+	}, (err, res) => {
+		if (err) {
+			res(true, "Request timeout resulted in request being cancelled when timeout reached.");
+		}
+		else {
+			res(false, "Timeout was reached yet request wasn't cancelled.");
+		}
+	});
+});*/
 
 w.test();
