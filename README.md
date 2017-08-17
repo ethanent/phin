@@ -1,10 +1,8 @@
-# phin
-
-> Ultra-simple, lightweight, dependency-free Node.JS HTTP request client (with util.promisify support)
-
-<img src="http://i.imgur.com/SSBM2Pw.png" width="100" alt="phin logo"/>
+<p style="text-align: center"><img src="http://i.imgur.com/SSBM2Pw.png" width="200" alt="phin logo"/></p>
 
 ---
+
+> Ultra-simple, lightweight, dependency-free Node.JS HTTP request client (with util.promisify support)
 
 [Full documentation](https://ethanent.github.io/phin/) | [GitHub](https://github.com/Ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
 
