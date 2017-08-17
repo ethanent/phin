@@ -1,4 +1,4 @@
-<p align="center" style="text-align: center;"><img src="http://i.imgur.com/SSBM2Pw.png" width="200" alt="phin logo"/></p>
+<p align="center" style="text-align: center;"><img src="http://i.imgur.com/SSBM2Pw.png" width="150" alt="phin logo"/></p>
 
 ---
 
