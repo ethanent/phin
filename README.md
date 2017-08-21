@@ -42,9 +42,8 @@ p({
 
 ```javascript
 p({
-	"url": "https://www.github.com/Ethanent",
+	"url": "https://www.github.com:8080/Ethanent",
 	"method": "POST",
-	"port": 8080,
 	"data": {
 		"name": "John Doe",
 		"someKey": "someValue"
