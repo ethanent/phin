@@ -40,6 +40,8 @@ const http = Object.assign({
 				assert.ok(request.body.equals(new Buffer("Sending some data...")), "POST data not sent.");
 				response.emit("data", new Buffer("Success!"));
 				response.emit("end");
+			} else if (options.path === "/portTest") {
+				assert.strictEqual(options.port, 5135);
 			}
 		}, 150);
 		return request;
@@ -101,6 +103,16 @@ w.add("util.promisify works on phin", (res) => {
 	}, (err) => {
 		res(false, "An error occured: " + err + ".");
 	});
+});
+
+w.add("Port is derived correctly", (res) => {
+	p("http://127.0.0.1:5135", (err, r) => {
+		if (err) {
+			res(false, "Port wasn't derived correctly (or at all).");
+		} else {
+			res(true, "Port derived correctly.");
+		}
+	}, http);
 });
 
 /*w.add("Set request timeout", (res) => {
