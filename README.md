@@ -42,9 +42,8 @@ p({
 
 ```javascript
 p({
-	"url": "https://www.github.com/Ethanent",
+	"url": "https://www.github.com:8080/Ethanent",
 	"method": "POST",
-	"port": 8080,
 	"data": {
 		"name": "John Doe",
 		"someKey": "someValue"
@@ -71,9 +70,7 @@ p({
 ### GET request with authorization through `url`
 
 ```javascript
-p({
-	"url": "https://ethan:letmein@example.com:8080"
-}, (err, res) => {
+p("https://ethan:letmein@example.com:8080", (err, res) => {
 	if (!err) console.log(res.body);
 });
 ```
