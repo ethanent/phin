@@ -105,7 +105,7 @@ w.add("util.promisify works on phin", (res) => {
 	});
 });
 
-w.add("Port is derived correctly", (res) => {
+w.add("Port is derived from URL", (res) => {
 	p("http://127.0.0.1:5135", (err, r) => {
 		if (err) {
 			res(false, "Port wasn't derived correctly (or at all).");
