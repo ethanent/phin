@@ -11,6 +11,9 @@ jsconfig.json
 # Benny stop, lol
 .eslintrc.json
 
+# Only dev-dependencies
+package-lock.json
+
 ### Node ###
 # Logs
 logs

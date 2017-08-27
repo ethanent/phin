@@ -1,10 +1,11 @@
 {
   "name": "phin",
-  "version": "2.2.92",
+  "version": "2.2.93",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
-  "main": "index.js",
+  "main": "lib/phin.js",
   "scripts": {
-    "test": "node ./tests/test.js"
+    "test": "node ./tests/test.js",
+    "prepublishOnly": "npm install --only=dev && npm test"
   },
   "repository": {
     "type": "git",
