@@ -1,4 +1,4 @@
-# NPM ignores
+# NPM, Yarn, Travis ignores
 
 .eslintrc.json
 logs
@@ -12,8 +12,9 @@ pids
 *.pid.lock
 .npm
 *.tgz
+.travis.yml
 
-# Large core ignores
+# Core resource ignores
 
 docs/
 media/
