@@ -3,6 +3,7 @@ const w = require('whew')
 const p = require('../')
 
 const http = require('http')
+const qs = require('querystring')
 
 var httpHandler = (req, res) => {
 	switch (req.method) {
@@ -25,15 +26,15 @@ var httpHandler = (req, res) => {
 			}
 			break
 		case 'POST':
-			switch (req.url) {
-				case '/testpost':
-					var postbody = ''
+			var postbody = ''
 
-					req.on('data', (ch) => {
-						postbody += ch
-					})
+			req.on('data', (ch) => {
+				postbody += ch
+			})
 
-					req.on('end', () => {
+			req.on('end', () => {
+				switch (req.url) {
+					case '/testpost':
 						if (postbody === 'Hey there!') {
 							res.writeHead(200)
 							res.end('Looks good.')
@@ -42,13 +43,42 @@ var httpHandler = (req, res) => {
 							res.writeHead(400)
 							res.end('Client didn\'t send expected data.')
 						}
-					})
-					break
-				default:
-					res.writeHead(404)
-					res.end('Not a valid POST test endpoint')
-					break
-			}
+						break
+					case '/testfd':
+						try {
+							if (qs.parse(postbody).hey === 'Hi') {
+								if (Buffer.byteLength(postbody) === Number(req.headers['content-length'])) {
+									if (req.headers['content-type'].toString() === 'application/x-www-url-form-encoded') {
+										res.writeHead(200)
+										res.end('Recieved valid data.')
+									}
+									else {
+										res.writeHead(400)
+										res.end('Incorrect content-type recieved by server.')
+									}
+								}
+								else {
+									res.writeHead(400)
+									res.end('Content-Length header contained incorrect content length.')
+								}
+							}
+							else {
+								res.writeHead(400)
+								res.end('Couldn\'t find a required property in data.')
+							}
+						}
+						catch (err) {
+							res.writeHead(400)
+							res.end('Parsing as query string failed. ' + err)
+							break
+						}
+						break
+					default:
+						res.writeHead(404)
+						res.end('Not a valid POST test endpoint')
+						break
+				}
+			})
 			break
 		default:
 			res.writeHead(405)
@@ -128,6 +158,27 @@ w.add('Timeout option', (result) => {
 	})
 })
 
+w.add('Sending form data with \'form\' option', (result) => {
+	p({
+		'url': 'http://localhost:5136/testfd',
+		'method': 'POST',
+		'form': {
+			'hey': 'Hi'
+		}
+	}, (err, res) => {
+		if (err) {
+			result(false, err)
+		}
+		else {
+			if (res.statusCode === 200) {
+				result(true, 'Server recieved valid form data.')
+			}
+			else {
+				result(false, res.body.toString())
+			}
+		}
+	})
+})
 
 var httpServer = http.createServer(httpHandler).listen(5136, () => {
 	w.test()
