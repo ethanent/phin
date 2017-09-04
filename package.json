@@ -1,11 +1,12 @@
 {
   "name": "phin",
-  "version": "2.3.11",
+  "version": "2.4.18",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
   "main": "lib/phin.js",
   "scripts": {
-    "test": "node ./tests/test.js",
-    "prepublishOnly": "npm install --only=dev && npm test"
+    "test": "npm install --only=dev && node ./tests/test.js",
+    "prepublishOnly": "npm test",
+    "prepush": "npm test"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   },
   "homepage": "https://github.com/Ethanent/phin#readme",
   "devDependencies": {
+    "hitched": "^1.1.24",
     "whew": "^1.0.0"
   }
 }
