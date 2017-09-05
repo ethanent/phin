@@ -180,25 +180,6 @@ w.add('Sending form data with \'form\' option', (result) => {
 	})
 })
 
-w.add('When the \'body\' option is set to false, the body is not gathered', (result) => {
-	p({
-		'url': 'http://localhost:5136/testget',
-		'body': false
-	}, (err, res) => {
-		if (err) {
-			result(false, err)
-		}
-		else {
-			if (res.body) {
-				result(false, 'Body was present.')
-			}
-			else {
-				result(true, 'Body not present.')
-			}
-		}
-	})
-})
-
 w.add('When the \'stream\' options is set to true, the body is not gathered and a readable stream is returned', (result) => {
 	p({
 		'url': 'http://localhost:5136/testget',
