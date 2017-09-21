@@ -14,6 +14,9 @@ pids
 *.tgz
 .travis.yml
 
+# GitHub config ignores
+CNAME
+
 # Core resource ignores
 
 docs/
