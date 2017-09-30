@@ -180,6 +180,28 @@ w.add('Sending form data with \'form\' option', (result) => {
 	})
 })
 
+w.add('When the \'stream\' options is set to true, the body is not gathered and a readable stream is returned', (result) => {
+	p({
+		'url': 'http://localhost:5136/testget',
+		'stream': true
+	}, (err, res) => {
+		if (err) {
+			result(false, err)
+		}
+		else {
+			if (res.body) {
+				result(false, 'Body was present.')
+			}
+			else if (res.stream instanceof require('stream').Readable) {
+				result(true, 'Body not present and a readable stream was returned.')
+			}
+			else {
+				result(false, 'Body was not present, but a readable stream was not returned.')
+			}
+		}
+	})
+})
+
 var httpServer = http.createServer(httpHandler).listen(5136, () => {
 	w.test()
 })
