@@ -7,7 +7,7 @@
 [Full documentation](https://ethanent.github.io/phin/) | [GitHub](https://github.com/Ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
 
 <a href="https://ethanent.me/discord">
-	<img src="https://ethanent.me/images/social/discord.svg" width="38" alt="Discord logo"/>
+	<img src="https://ethanent.me/images/social/discord.svg" width="40" alt="Discord logo"/>
 	Chat on Discord
 </a>
 
