@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm install --only=dev && node ./tests/test.js",
     "prepublishOnly": "npm test",
-    "prepush": "npm test && rm -r docs && jsdoc -R README.md -d ./docs lib/phin.js"
+    "prepush": "npm test",
+    "gendocs": "rm -r docs || true && jsdoc -R README.md -d ./docs lib/phin.js"
   },
   "repository": {
     "type": "git",
