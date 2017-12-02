@@ -6,7 +6,10 @@
 
 [Full documentation](https://ethanent.github.io/phin/) | [GitHub](https://github.com/Ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
 
-[![ethanent Discord Server Status](https://discordapp.com/api/guilds/386353885377331211/widget.png)](https://ethanent.me/discord "ethanent Official Discord Server")
+<a href="https://ethanent.me/discord">
+	<img src="https://ethanent.me/images/social/discord.svg" width="40" alt="Discord logo"/>
+	Chat on Discord
+</a>
 
 ## Simple Usage
 For a simple page GET request.
