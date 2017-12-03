@@ -48,7 +48,7 @@ var httpHandler = (req, res) => {
 						try {
 							if (qs.parse(postbody).hey === 'Hi') {
 								if (Buffer.byteLength(postbody) === Number(req.headers['content-length'])) {
-									if (req.headers['content-type'].toString() === 'application/x-www-url-form-encoded') {
+									if (req.headers['content-type'].toString() === 'application/x-www-form-urlencoded') {
 										res.writeHead(200)
 										res.end('Recieved valid data.')
 									}
