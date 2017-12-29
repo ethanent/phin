@@ -19,6 +19,16 @@ var httpHandler = (req, res) => {
 						res.end('That was slow.')
 					}, 1300);
 					break
+				case '/notjson':
+					res.writeHead(200)
+					res.end('hey')
+					break
+				case '/json':
+					res.writeHead(200)
+					res.end(JSON.stringify({
+						'hi': 'hey'
+					}))
+					break
 				default:
 					res.writeHead(404)
 					res.end('Not a valid test endpoint')
@@ -176,6 +186,36 @@ w.add('Sending form data with \'form\' option', (result) => {
 			else {
 				result(false, res.body.toString())
 			}
+		}
+	})
+})
+
+w.add('Parse JSON', (result) => {
+	p({
+		'url': 'http://localhost:5136/json',
+		'method': 'GET',
+		'timeout': 500,
+		'parse': 'json'
+	}, (err, res) => {
+		if (!err && typeof res.body === 'object' && res.body.hi === 'hey') {
+			result(true, 'Parsed JSON properly.')
+		}
+		else result(false, 'Failed to parse JSON.')
+	})
+})
+
+w.add('Parse bad JSON', (result) => {
+	p({
+		'url': 'http://localhost:5136/notjson',
+		'method': 'GET',
+		'timeout': 500,
+		'parse': 'json'
+	}, (err, res) => {
+		if (err.indexOf('Invalid') === 0) {
+			result(true, 'Gave correct error on invalid JSON.')
+		}
+		else {
+			result(false, 'Didn\'t give error on invalid JSON.')
 		}
 	})
 })

@@ -64,6 +64,19 @@ const p = require('phin').promisified
 })()
 ```
 
+Simple parsing of JSON:
+
+```javascript
+// (In async function in this case.)
+
+const res = await p({
+	url: 'https://ethanent.me/name',
+	parse: 'json'
+})
+
+console.log(res.body.first)
+```
+
 
 ## Documentation
 
