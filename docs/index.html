@@ -43,52 +43,36 @@
 
 
     <section>
-        <article><p align="center" style="text-align: center;"><img src="https://raw.githubusercontent.com/ethanent/phin/master/media/phin-textIncluded.png" width="250" alt="phin logo"/></p>
+        <article><p align="center" style="text-align: center"><img src="https://raw.githubusercontent.com/ethanent/phin/master/media/phin-textIncluded.png" width="250" alt="phin logo"/></p>
 
 <hr>
 <blockquote>
-<p>Ultra-simple, lightweight, dependency-free Node.JS HTTP request client (with util.promisify support)</p>
+<p>The ultra-lightweight Node.js HTTP client</p>
 </blockquote>
-<p><a href="https://ethanent.github.io/phin/">Full documentation</a> | <a href="https://github.com/Ethanent/phin">GitHub</a> | <a href="https://www.npmjs.com/package/phin">NPM</a></p>
-<p><a href="https://ethanent.me/discord">
-    <img src="https://ethanent.me/images/social/discord.svg" width="40" style="display: inline; vertical-align: middle;" alt="Discord logo"/>
-    Chat on Discord
-</a></p>
-<h2>Simple Usage</h2><p>For a simple page GET request.</p>
-<pre class="prettyprint source lang-javascript"><code>var p = require(&quot;phin&quot;);
+<p><a href="https://ethanent.github.io/phin/">Full documentation</a> | <a href="https://github.com/ethanent/phin">GitHub</a> | <a href="https://www.npmjs.com/package/phin">NPM</a></p>
+<h2>Simple Usage</h2><pre class="prettyprint source lang-javascript"><code>const p = require('phin')
 
-p(&quot;https://www.github.com/Ethanent&quot;, (err, res) => {
-    if (!err) console.log(res.body.toString());
-});</code></pre><h2>Installation</h2><pre class="prettyprint source"><code>npm install phin</code></pre><h2>Quick Demos</h2><h3>GET request with added headers</h3><pre class="prettyprint source lang-javascript"><code>p({
-    &quot;url&quot;: &quot;https://www.github.com/Ethanent&quot;,
-    &quot;headers&quot;: {
-        &quot;User-Agent&quot;: &quot;phin&quot;
+p('https://ethanent.me', (err, res) => {
+    if (!err) console.log(res.body)
+})</code></pre><h2>Installation</h2><pre class="prettyprint source"><code>npm install phin</code></pre><h2>Why phin?</h2><p>phin is <strong>trusted</strong> by some really important projects. The hundreds of contributors at <a href="https://github.com/less/less.js">Less</a>, for example, depend on phin as part of their development process.</p>
+<p>Also, phin is super <strong>lightweight</strong>. Like <strong>99.6% smaller than request</strong> lightweight.</p>
+<p><img src="https://pbs.twimg.com/media/DSLU_UcUEAI4bgc.jpg:large" alt="Request is over 6MB in size. phin is just 25KB in size."/></p>
+<h2>Quick Demos</h2><p>Simple POST:</p>
+<pre class="prettyprint source lang-javascript"><code>p({
+    url: 'https://ethanent.me',
+    method: 'POST',
+    data: {
+        'hey': 'hi'
     }
-});</code></pre><h3>POST request with data</h3><pre class="prettyprint source lang-javascript"><code>p({
-    &quot;url&quot;: &quot;https://www.github.com/Ethanent&quot;,
-    &quot;method&quot;: &quot;POST&quot;,
-    &quot;port&quot;: 8080,
-    &quot;data&quot;: {
-        &quot;name&quot;: &quot;John Doe&quot;,
-        &quot;someKey&quot;: &quot;someValue&quot;
-    },
-    &quot;headers&quot;: {
-        &quot;Content-Type&quot; : &quot;application/json&quot;
-    }
-}, (err, res) => {
-    if (!err) console.log(&quot;Sent data!&quot;);
-});</code></pre><h3>GET request with authorization using <code>auth</code> option</h3><pre class="prettyprint source lang-javascript"><code>p({
-    &quot;url&quot;: &quot;https://example.com&quot;,
-    &quot;auth&quot;: &quot;ethan:letmein&quot;
-}, (err, res) => {
-    if (!err) console.log(res.body);
-});</code></pre><h3>GET request with authorization through <code>url</code></h3><pre class="prettyprint source lang-javascript"><code>p({
-    &quot;url&quot;: &quot;https://ethan:letmein@example.com:8080&quot;
-}, (err, res) => {
-    if (!err) console.log(res.body);
-});</code></pre><hr>
-<h2>Documentation</h2><p>See <a href="https://ethanent.github.io/phin/">the phin documentation</a>.</p>
-<p>Note that <code>phin</code> has <a href="https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original"><code>util.promisify</code></a> support.</p></article>
+})</code></pre><p>Promisified:</p>
+<pre class="prettyprint source lang-javascript"><code>const p = require('phin').promisified</code></pre><pre class="prettyprint source lang-javascript"><code>;(async () => {
+    const res = await p({
+        url: 'https://ethanent.me'
+    })
+
+    console.log(res.body)
+})()</code></pre><h2>Documentation</h2><p>See <a href="https://ethanent.github.io/phin/">the phin documentation</a>.</p>
+<p><code>phin</code> has <a href="https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original"><code>util.promisify</code></a> support. The promisified library can also be accessed with <code>require('phin').promisified</code>!</p></article>
     </section>
 
 
@@ -105,7 +89,7 @@ p(&quot;https://www.github.com/Ethanent&quot;, (err, res) => {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Dec 01 2017 21:31:54 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Dec 28 2017 21:27:13 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>

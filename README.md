@@ -1,25 +1,20 @@
-<p align="center" style="text-align: center;"><img src="https://raw.githubusercontent.com/ethanent/phin/master/media/phin-textIncluded.png" width="250" alt="phin logo"/></p>
+<p align="center" style="text-align: center"><img src="https://raw.githubusercontent.com/ethanent/phin/master/media/phin-textIncluded.png" width="250" alt="phin logo"/></p>
 
 ---
 
-> Ultra-simple, lightweight, dependency-free Node.JS HTTP request client (with util.promisify support)
+> The ultra-lightweight Node.js HTTP client
 
-[Full documentation](https://ethanent.github.io/phin/) | [GitHub](https://github.com/Ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
+[Full documentation](https://ethanent.github.io/phin/) | [GitHub](https://github.com/ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
 
-<a href="https://ethanent.me/discord">
-	<img src="https://ethanent.me/images/social/discord.svg" width="40" style="display: inline; vertical-align: middle;" alt="Discord logo"/>
-	Chat on Discord
-</a>
 
 ## Simple Usage
-For a simple page GET request.
 
 ```javascript
-var p = require("phin");
+const p = require('phin')
 
-p("https://www.github.com/Ethanent", (err, res) => {
-	if (!err) console.log(res.body.toString());
-});
+p('https://ethanent.me', (err, res) => {
+	if (!err) console.log(res.body)
+})
 ```
 
 
@@ -30,64 +25,48 @@ npm install phin
 ```
 
 
+## Why phin?
+
+phin is **trusted** by some really important projects. The hundreds of contributors at [Less](https://github.com/less/less.js), for example, depend on phin as part of their development process.
+
+Also, phin is super **lightweight**. Like **99.6% smaller than request** lightweight.
+
+<img src="https://pbs.twimg.com/media/DSLU_UcUEAI4bgc.jpg:large" alt="Request is over 6MB in size. phin is just 25KB in size."/>
+
+
 ## Quick Demos
 
-### GET request with added headers
+Simple POST:
 
 ```javascript
 p({
-	"url": "https://www.github.com/Ethanent",
-	"headers": {
-		"User-Agent": "phin"
+	url: 'https://ethanent.me',
+	method: 'POST',
+	data: {
+		'hey': 'hi'
 	}
-});
+})
 ```
 
-### POST request with data
+Promisified:
 
 ```javascript
-p({
-	"url": "https://www.github.com/Ethanent",
-	"method": "POST",
-	"port": 8080,
-	"data": {
-		"name": "John Doe",
-		"someKey": "someValue"
-	},
-	"headers": {
-		"Content-Type" : "application/json"
-	}
-}, (err, res) => {
-	if (!err) console.log("Sent data!");
-});
+const p = require('phin').promisified
 ```
-
-### GET request with authorization using `auth` option
 
 ```javascript
-p({
-	"url": "https://example.com",
-	"auth": "ethan:letmein"
-}, (err, res) => {
-	if (!err) console.log(res.body);
-});
+;(async () => {
+	const res = await p({
+		url: 'https://ethanent.me'
+	})
+
+	console.log(res.body)
+})()
 ```
 
-### GET request with authorization through `url`
-
-```javascript
-p({
-	"url": "https://ethan:letmein@example.com:8080"
-}, (err, res) => {
-	if (!err) console.log(res.body);
-});
-```
-
-
----
 
 ## Documentation
 
 See [the phin documentation](https://ethanent.github.io/phin/).
 
-Note that `phin` has [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original) support.
+`phin` has [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original) support. The promisified library can also be accessed with `require('phin').promisified`!
