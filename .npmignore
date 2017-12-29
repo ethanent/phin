@@ -1,4 +1,4 @@
-# NPM, Yarn, Travis ignores
+# NPM, Yarn, Travis, Git ignores
 
 .eslintrc.json
 logs
@@ -13,8 +13,10 @@ pids
 .npm
 *.tgz
 .travis.yml
+.gitignore
 
 # Core resource ignores
 
 docs/
 media/
+tests/
