@@ -43,7 +43,7 @@ p({
 	url: 'https://ethanent.me',
 	method: 'POST',
 	data: {
-		'hey': 'hi'
+		hey: 'hi'
 	}
 })
 ```
