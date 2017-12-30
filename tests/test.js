@@ -83,6 +83,25 @@ var httpHandler = (req, res) => {
 							break
 						}
 						break
+					case '/testjson':
+						try {
+							let jsonParsed = JSON.parse(postbody)
+
+							if (jsonParsed.hi === 'hey') {
+								res.writeHead(200)
+								res.end('Good.')
+							}
+							else {
+								res.writeHead(400)
+								res.end('Bad data.')
+							}
+						}
+						catch (err) {
+							res.writeHead(400)
+							res.end('Not JSON.')
+							return
+						}
+						break
 					default:
 						res.writeHead(404)
 						res.end('Not a valid POST test endpoint')
@@ -201,6 +220,25 @@ w.add('Parse JSON', (result) => {
 			result(true, 'Parsed JSON properly.')
 		}
 		else result(false, 'Failed to parse JSON.')
+	})
+})
+
+w.add('Send object', (result) => {
+	p({
+		'url': 'http://localhost:5136/testjson',
+		'method': 'POST',
+		'timeout': 500,
+		'data': {
+			'hi': 'hey'
+		}
+	}, (err, res) => {
+		if (!err) {
+			if (res.statusCode === 200) {
+				result(true, 'Server recieved the correct data.')
+			}
+			else result(false, res.body.toString())
+		}
+		else result(false, err)
 	})
 })
 
