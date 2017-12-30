@@ -18,7 +18,7 @@ p('https://ethanent.me', (err, res) => {
 ```
 
 
-## Installation
+## Install
 
 ```
 npm install phin
@@ -29,9 +29,9 @@ npm install phin
 
 phin is **trusted** by some really important projects. The hundreds of contributors at [Less](https://github.com/less/less.js), for example, depend on phin as part of their development process.
 
-Also, phin is super **lightweight**. Like **99.6% smaller than request** lightweight.
+Also, phin is super **lightweight**. Like **99.8% smaller than request** lightweight. To compare to other libraries, see [phin vs. the Competition](https://github.com/ethanent/phin/blob/master/README.md#phin-vs-the-competition).
 
-<img src="https://pbs.twimg.com/media/DSLU_UcUEAI4bgc.jpg:large" alt="Request is over 6MB in size. phin is just 25KB in size."/>
+<img src="https://pbs.twimg.com/media/DSPF9TaUQAA0tIe.jpg:large" alt="phin became 33% lighter with release 2.7.0!"/>
 
 
 ## Quick Demos
@@ -83,3 +83,20 @@ console.log(res.body.first)
 See [the phin documentation](https://ethanent.github.io/phin/).
 
 `phin` has [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original) support. The promisified library can also be accessed with `require('phin').promisified`!
+
+
+## phin vs. the Competition
+
+<img src="https://pbs.twimg.com/media/DSLU_UcUEAI4bgc.jpg:large" alt="Request is over 6MB in size. phin is just 25KB in size."/>
+
+phin is super lightweight, and *it's getting lighter all the time*.
+
+It contains all of the common HTTP client features included in competing libraries!
+
+Package | Size (KB) | Dependencies<br />(Tree Count) | Size Comparison<br />(vs. phin)
+--- | --- | --- | ---
+request | 4,446 | [53](http://npm.anvaka.com/#/view/2d/request) | 444.6x
+superagent | 1,235 | [24](http://npm.anvaka.com/#/view/2d/superagent) | 123.5x
+got | 664 | [44](http://npm.anvaka.com/#/view/2d/got) | 66.4x
+snekfetch | 107 | [0](http://npm.anvaka.com/#/view/2d/snekfetch) | 10.7x
+phin | 10 | [0](http://npm.anvaka.com/#/view/2d/phin) | 1x
