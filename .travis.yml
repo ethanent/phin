@@ -4,4 +4,4 @@ node_js:
   - "8"
   - "7"
   - "6"
-script: npm test-dev
+script: npm run test-dev
