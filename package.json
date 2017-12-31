@@ -5,10 +5,10 @@
   "main": "lib/phin.compiled.js",
   "scripts": {
     "test": "echo \"Tested before deployment.\" && exit 0",
-    "test-dev": "npm install --only=dev && node ./tests/test.js",
+    "test-dev": "npm install --only=dev && node ./tests/test.compiled.js",
     "prepublishOnly": "npm run test-dev",
     "gendocs": "rm -r docs || true && jsdoc -R README.md -d ./docs lib/phin.js",
-    "compile": "npx babel lib/phin.js --out-file lib/phin.compiled.js --presets env --minified --no-comments"
+    "compile": "npx babel lib/phin.js --out-file lib/phin.compiled.js --presets env --minified --no-comments && npx babel tests/test.js --out-file tests/test.compiled.js --presets env --minified --no-comments"
   },
   "repository": {
     "type": "git",
