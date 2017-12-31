@@ -7,7 +7,6 @@
     "test": "echo \"Tested before deployment.\" && exit 0",
     "test-dev": "npm install --only=dev && node ./tests/test.js",
     "prepublishOnly": "npm run test-dev",
-    "prepush": "npm run test-dev",
     "gendocs": "rm -r docs || true && jsdoc -R README.md -d ./docs lib/phin.js",
     "compile": "npx babel lib/phin.js --out-file lib/phin.compiled.js --presets env --minified --no-comments"
   },
@@ -33,7 +32,6 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "hitched": "^1.1.24",
     "whew": "^1.0.0"
   },
   "files": [
