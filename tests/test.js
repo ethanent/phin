@@ -1,4 +1,5 @@
 const w = require('whew')
+const poky = require('poky')
 
 const p = require('../')
 
@@ -22,6 +23,14 @@ var httpHandler = (req, res) => {
 				case '/notjson':
 					res.writeHead(200)
 					res.end('hey')
+					break
+				case '/chunked':
+					;(async() => {
+						res.writeHead(200)
+						res.write('hi')
+						await poky(50)
+						res.end('hey')
+					})()
 					break
 				case '/json':
 					res.writeHead(200)
@@ -258,6 +267,32 @@ w.add('Parse bad JSON', (result) => {
 	})
 })
 
-var httpServer = http.createServer(httpHandler).listen(5136, () => {
-	w.test()
+w.add('Stream data from server', (result) => {
+	p({
+		'url': 'http://localhost:5136/chunked',
+		'method': 'GET',
+		'stream': true,
+		'timeout': 500
+	}, (err, res) => {
+		if (err) {
+			result(false, err)
+		}
+		else {
+			if (res.hasOwnProperty('stream')) {
+				res.stream.once('data', (data) => {
+					if (data.toString() === 'hi') {
+						result(true, 'Stream got expected partial data.')
+					}
+					else {
+						result(false, 'Stream got unexpected partial data.')
+					}
+				})
+			}
+			else {
+				result(false, 'Stream property didn\'t exist.')
+			}
+		}
+	})
 })
+
+var httpServer = http.createServer(httpHandler).listen(5136, w.test)
