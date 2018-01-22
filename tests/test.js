@@ -1,5 +1,4 @@
 const w = require('whew')
-const poky = require('poky')
 
 const p = require('../')
 
@@ -25,12 +24,11 @@ var httpHandler = (req, res) => {
 					res.end('hey')
 					break
 				case '/chunked':
-					;(async() => {
 						res.writeHead(200)
 						res.write('hi')
-						await poky(50)
-						res.end('hey')
-					})()
+						setTimeout(() => {
+							res.end('hey')
+						}, 50)
 					break
 				case '/json':
 					res.writeHead(200)

@@ -32,7 +32,6 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "poky": "^1.0.1",
     "whew": "^1.0.0"
   },
   "files": [
