@@ -249,6 +249,23 @@ w.add('Send object', (result) => {
 	})
 })
 
+w.add('No callback', (result) => {
+	try {
+		p({
+			'url': 'http://localhost:5136/testget',
+			'method': 'GET',
+			'stream': true,
+			'timeout': 1000
+		})
+	}
+	catch (err) {
+		result(false, err)
+		return
+	}
+
+	result(true, 'Success.')
+})
+
 w.add('Parse bad JSON', (result) => {
 	p({
 		'url': 'http://localhost:5136/notjson',

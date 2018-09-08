@@ -1,6 +1,6 @@
 {
   "name": "phin",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
   "main": "lib/phin.compiled.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "test-dev": "node ./tests/test.js",
     "prepublishOnly": "npm run test-dev",
     "gendocs": "rm -r docs || true && jsdoc -R README.md -d ./docs lib/phin.js",
-    "compile": "npx babel lib/phin.js --out-file lib/phin.compiled.js --presets env --minified --no-comments"
+    "build": "npx babel lib/phin.js --out-file lib/phin.compiled.js --presets env --minified --no-comments"
   },
   "repository": {
     "type": "git",
