@@ -1,14 +1,12 @@
 {
   "name": "phin",
-  "version": "2.9.3",
+  "version": "3.0.0",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
-  "main": "lib/phin.compiled.js",
+  "main": "lib/phin.min.js",
   "scripts": {
-    "test": "echo \"Tested before deployment.\" && exit 0",
-    "test-dev": "node ./tests/test.js",
-    "prepublishOnly": "npm run test-dev",
-    "gendocs": "rm -r docs || true && jsdoc -R README.md -d ./docs lib/phin.js",
-    "build": "npx babel lib/phin.js --out-file lib/phin.compiled.js --presets env --minified --no-comments"
+    "test": "node ./tests/test.js",
+    "prepublishOnly": "npm test",
+    "gendocs": "rm -r docs || true && jsdoc -R README.md -d ./docs lib/phin.js"
   },
   "repository": {
     "type": "git",
@@ -30,12 +28,13 @@
   },
   "homepage": "https://github.com/ethanent/phin#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "whew": "^1.0.0"
+    "whew": "^1.1.3"
   },
   "files": [
-    "lib/phin.compiled.js",
+    "lib/phin.min.js",
     "LICENSE"
-  ]
+  ],
+  "dependencies": {
+    "centra": "^2.1.0"
+  }
 }

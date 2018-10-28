@@ -8,9 +8,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Only dev-dependencies
-package-lock.json
-
 # Env information / sensitive data
 .env
 pids

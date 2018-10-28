@@ -1,6 +1,7 @@
 const w = require('whew')
 
-const p = require('../')
+const p = require('../').unpromisified
+const pp = require('../')
 
 const http = require('http')
 const qs = require('querystring')
@@ -158,7 +159,7 @@ w.add('POST request with body', (result) => {
 })
 
 w.add('Promisified phin requesting', (result) => {
-	p.promisified({
+	pp({
 		'url': 'http://localhost:5136/testget',
 		'method': 'GET'
 	}).then((res) => {
@@ -273,7 +274,7 @@ w.add('Parse bad JSON', (result) => {
 		'timeout': 500,
 		'parse': 'json'
 	}, (err, res) => {
-		if (err.indexOf('Invalid') === 0) {
+		if (err) {
 			result(true, 'Gave correct error on invalid JSON.')
 		}
 		else {

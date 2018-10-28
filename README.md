@@ -12,11 +12,12 @@
 ```javascript
 const p = require('phin')
 
-p('https://ethanent.me', (err, res) => {
-	if (!err) console.log(res.body)
-})
+const res = await p('https://ethanent.me')
+
+console.log(res.body)
 ```
 
+Note that the above should be in an async context! phin also provides an unpromisified version of the library.
 
 ## Install
 
@@ -39,7 +40,7 @@ Also, phin is super **lightweight**. Like **99.8% smaller than request** lightwe
 Simple POST:
 
 ```javascript
-p({
+await p({
 	url: 'https://ethanent.me',
 	method: 'POST',
 	data: {
@@ -48,20 +49,14 @@ p({
 })
 ```
 
-Promisified:
+## Unpromisified Usage
 
 ```javascript
-const p = require('phin').promisified
-```
+const p = require('phin').unpromisified
 
-```javascript
-;(async () => {
-	const res = await p({
-		url: 'https://ethanent.me'
-	})
-
-	console.log(res.body)
-})()
+p('https://ethanent.me', (err, res) => {
+	if (!err) console.log(res.body)
+})
 ```
 
 Simple parsing of JSON:
@@ -78,18 +73,15 @@ console.log(res.body.first)
 ```
 
 
-## Documentation
+## Full Documentation
 
 See [the phin documentation](https://ethanent.github.io/phin/).
-
-`phin` has [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original) support. The promisified library can also be accessed with `require('phin').promisified`!
-
 
 ## phin vs. the Competition
 
 <img src="https://pbs.twimg.com/media/DSLU_UcUEAI4bgc.jpg:large" alt="Request is over 6MB in size. phin is just 25KB in size."/>
 
-phin is super lightweight, and *it's getting lighter all the time*.
+phin is a very lightweight library.
 
 It contains all of the common HTTP client features included in competing libraries!
 
@@ -99,4 +91,4 @@ request | 4,446 | [53](http://npm.anvaka.com/#/view/2d/request) | 444.6x
 superagent | 1,235 | [24](http://npm.anvaka.com/#/view/2d/superagent) | 123.5x
 got | 664 | [44](http://npm.anvaka.com/#/view/2d/got) | 66.4x
 snekfetch | 107 | [0](http://npm.anvaka.com/#/view/2d/snekfetch) | 10.7x
-phin | 10 | [0](http://npm.anvaka.com/#/view/2d/phin) | 1x
+phin | 10 | [1](http://npm.anvaka.com/#/view/2d/phin) | 1x
