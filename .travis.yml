@@ -3,3 +3,6 @@ node_js:
   - "node"
   - "lts/*"
 script: npm test
+cache:
+  directories:
+    - "node_modules"
