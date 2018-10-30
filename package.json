@@ -34,6 +34,9 @@
     "lib/phin.min.js",
     "LICENSE"
   ],
+  "engines": {
+    "node": ">= 8"
+  },
   "dependencies": {
     "centra": "^2.1.0"
   }
