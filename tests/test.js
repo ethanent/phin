@@ -37,6 +37,20 @@ var httpHandler = (req, res) => {
 						'hi': 'hey'
 					}))
 					break
+				case '/corrected':
+					res.writeHead(200)
+					res.end('That\'s better.')
+					break
+				case '/redirect2':
+					res.writeHead(301, {
+						'Location': '/corrected'
+					})
+					res.end()
+				case '/redirect':
+					res.writeHead(301, {
+						'Location': '/redirect2'
+					})
+					res.end()
 				default:
 					res.writeHead(404)
 					res.end('Not a valid test endpoint')
@@ -280,6 +294,17 @@ w.add('Parse bad JSON', (result) => {
 		else {
 			result(false, 'Didn\'t give error on invalid JSON.')
 		}
+	})
+})
+
+w.add('Follow redirect', (result) => {
+	p({
+		'url': 'http://localhost:5136/redirect',
+		'method': 'GET',
+		'timeout': 1000,
+		'followRedirects': true
+	}, (err, res) => {
+		result(res.statusCode === 200)
 	})
 })
 
