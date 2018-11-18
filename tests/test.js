@@ -4,6 +4,7 @@ const p = require('../').unpromisified
 const pp = require('../')
 
 const http = require('http')
+const zlib = require('zlib')
 const qs = require('querystring')
 
 var httpHandler = (req, res) => {
@@ -51,6 +52,19 @@ var httpHandler = (req, res) => {
 						'Location': '/redirect2'
 					})
 					res.end()
+					break
+				case '/compressed':
+					res.writeHead(200, {
+						'Content-Encoding': 'gzip'
+					})
+
+					const compressor = zlib.createGzip()
+
+					compressor.pipe(res)
+
+					compressor.write('Hello there')
+					compressor.end()
+					break
 				default:
 					res.writeHead(404)
 					res.end('Not a valid test endpoint')
@@ -294,6 +308,17 @@ w.add('Parse bad JSON', (result) => {
 		else {
 			result(false, 'Didn\'t give error on invalid JSON.')
 		}
+	})
+})
+
+w.add('Compression', (result) => {
+	p({
+		'url': 'http://localhost:5136/compressed',
+		'method': 'GET',
+		'timeout': 1000,
+		'compression': true
+	}, (err, res) => {
+		result(res.body.toString() === 'Hello there', res.body.toString())
 	})
 })
 
