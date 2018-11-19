@@ -39,7 +39,7 @@ Also, phin is super **lightweight**. Like **99.8% smaller than request** lightwe
 
 Simple POST:
 
-```javascript
+```js
 await p({
 	url: 'https://ethanent.me',
 	method: 'POST',
@@ -51,7 +51,7 @@ await p({
 
 ## Unpromisified Usage
 
-```javascript
+```js
 const p = require('phin').unpromisified
 
 p('https://ethanent.me', (err, res) => {
@@ -61,7 +61,7 @@ p('https://ethanent.me', (err, res) => {
 
 Simple parsing of JSON:
 
-```javascript
+```js
 // (In async function in this case.)
 
 const res = await p({
@@ -70,6 +70,23 @@ const res = await p({
 })
 
 console.log(res.body.first)
+```
+
+## Default options
+
+```js
+const ppostjson = p.defaults({
+	'method': 'POST',
+	'parse': 'json',
+	'timeout': 2000
+})
+
+// In async function...
+
+const res = await ppostjson('https://ethanent.me/somejson')
+// ^ An options object could also be used here to set other options.
+
+// Do things with res.body?
 ```
 
 

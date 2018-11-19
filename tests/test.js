@@ -138,6 +138,10 @@ var httpHandler = (req, res) => {
 							return
 						}
 						break
+					case '/simplepost':
+						res.writeHead(200)
+						res.end('Got your POST.')
+						break
 					default:
 						res.writeHead(404)
 						res.end('Not a valid POST test endpoint')
@@ -359,6 +363,28 @@ w.add('Stream data from server', (result) => {
 			}
 		}
 	})
+})
+
+w.add('Defaults with just URL', async (result) => {
+	const ppost = pp.defaults({
+		'method': 'POST'
+	})
+
+	const res = await ppost('http://localhost:5136/simplepost')
+
+	result(res.statusCode === 200 && res.body.toString() === 'Got your POST.', res.statusCode)
+})
+
+w.add('Defaults with object options', async (result) => {
+	const ppost = pp.defaults({
+		'method': 'POST'
+	})
+
+	const res = await ppost({
+		'url': 'http://localhost:5136/simplepost'
+	})
+
+	result(res.statusCode === 200 && res.body.toString() === 'Got your POST.', res.statusCode)
 })
 
 var httpServer = http.createServer(httpHandler).listen(5136, w.test)
