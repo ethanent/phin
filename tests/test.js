@@ -90,6 +90,17 @@ var httpHandler = (req, res) => {
 							res.end('Client didn\'t send expected data.')
 						}
 						break
+					case '/testContentTypeJSON':
+						if (req.headers['content-type'] === 'application/json') {
+							res.writeHead(200)
+							res.end('OK')
+						}
+						else {
+							res.writeHead(400)
+							res.end('Bad header')
+						}
+
+						break
 					case '/testfd':
 						try {
 							if (qs.parse(postbody).hey === 'Hi') {
@@ -392,6 +403,18 @@ w.add('Buffer body', async (result) => {
 		'method': 'POST',
 		'url': 'http://localhost:5136/testpost',
 		'data': Buffer.from('Hey there!')
+	})
+
+	result(res.statusCode === 200, res.body.toString())
+})
+
+w.add('JSON body content-type header', async (result) => {
+	const res = await pp({
+		'method': 'POST',
+		'url': 'http://localhost:5136/testContentTypeJSON',
+		'data': {
+			'hey': 'hi'
+		}
 	})
 
 	result(res.statusCode === 200, res.body.toString())
