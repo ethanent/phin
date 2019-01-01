@@ -387,4 +387,14 @@ w.add('Defaults with object options', async (result) => {
 	result(res.statusCode === 200 && res.body.toString() === 'Got your POST.', res.statusCode)
 })
 
+w.add('Buffer body', async (result) => {
+	const res = await pp({
+		'method': 'POST',
+		'url': 'http://localhost:5136/testpost',
+		'data': Buffer.from('Hey there!')
+	})
+
+	result(res.statusCode === 200, res.body.toString())
+})
+
 var httpServer = http.createServer(httpHandler).listen(5136, w.test)

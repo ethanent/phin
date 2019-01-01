@@ -1,6 +1,6 @@
 {
   "name": "phin",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
   "main": "lib/phin.min.js",
   "scripts": {
@@ -38,6 +38,6 @@
     "node": ">= 8"
   },
   "dependencies": {
-    "centra": "^2.1.0"
+    "centra": "^2.2.1"
   }
 }
