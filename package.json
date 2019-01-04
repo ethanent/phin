@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/ethanent/phin#readme",
   "devDependencies": {
+    "jsdoc": "^3.5.5",
     "whew": "^1.1.3"
   },
   "files": [
