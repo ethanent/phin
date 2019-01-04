@@ -1,7 +1,7 @@
 {
   "name": "phin",
-  "version": "3.2.3",
-  "description": "Ultra-simple, lightweight, dependency-free Node.JS HTTP request client",
+  "version": "3.2.4",
+  "description": "The ultra-lightweight Node.js HTTP client",
   "main": "lib/phin.min.js",
   "scripts": {
     "test": "node ./tests/test.js",
