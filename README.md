@@ -96,16 +96,14 @@ See [the phin documentation](https://ethanent.github.io/phin/).
 
 ## phin vs. the Competition
 
-<img src="https://pbs.twimg.com/media/DSLU_UcUEAI4bgc.jpg:large" alt="Request is over 6MB in size. phin is just 25KB in size."/>
+phin is a very lightweight library, yet it contains all of the common HTTP client features included in competing libraries!
 
-phin is a very lightweight library.
+Here's a size comparison table:
 
-It contains all of the common HTTP client features included in competing libraries!
-
-Package | Size (KB) | Dependencies<br />(Tree Count) | Size Comparison<br />(vs. phin)
---- | --- | --- | ---
-request | 4,446 | [53](http://npm.anvaka.com/#/view/2d/request) | 444.6x
-superagent | 1,235 | [24](http://npm.anvaka.com/#/view/2d/superagent) | 123.5x
-got | 664 | [44](http://npm.anvaka.com/#/view/2d/got) | 66.4x
-snekfetch | 107 | [0](http://npm.anvaka.com/#/view/2d/snekfetch) | 10.7x
-phin | 10 | [1](http://npm.anvaka.com/#/view/2d/phin) | 1x
+Package | Size
+--- | ---
+request | [![request package size](https://packagephobia.now.sh/badge?p=request)](https://packagephobia.now.sh/result?p=request)
+superagent | [![superagent package size](https://packagephobia.now.sh/badge?p=superagent)](https://packagephobia.now.sh/result?p=superagent)
+got | [![got package size](https://packagephobia.now.sh/badge?p=got)](https://packagephobia.now.sh/result?p=got)
+snekfetch | [![snekfetch package size](https://packagephobia.now.sh/badge?p=snekfetch)](https://packagephobia.now.sh/result?p=snekfetch)
+phin | [![phin package size](https://packagephobia.now.sh/badge?p=phin)](https://packagephobia.now.sh/result?p=phin)
