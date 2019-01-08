@@ -49,6 +49,24 @@ await p({
 })
 ```
 
+Using HTTP request agent:
+
+```js
+const HttpsProxyAgent = require('https-proxy-agent');
+
+const proxy = 'http://localhost:8008';
+const agent = new HttpsProxyAgent(proxy);
+
+await p({
+	url: 'https://ethanent.me',
+	method: 'POST',
+	data: {
+		hey: 'hi'
+	},
+	agent: agent
+})
+```
+
 ## Unpromisified Usage
 
 ```js
