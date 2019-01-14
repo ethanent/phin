@@ -110,4 +110,5 @@ got | [![got package size](https://packagephobia.now.sh/badge?p=got)](https://pa
 r2 | [![r2 package size](https://packagephobia.now.sh/badge?p=r2)](https://packagephobia.now.sh/result?p=r2)
 node-fetch | [![node-fetch package size](https://packagephobia.now.sh/badge?p=node-fetch)](https://packagephobia.now.sh/result?p=node-fetch)
 snekfetch | [![snekfetch package size](https://packagephobia.now.sh/badge?p=snekfetch)](https://packagephobia.now.sh/result?p=snekfetch)
+slim-fetch | [![slim-fetch package size](https://packagephobia.now.sh/badge?p=slim-fetch)](https://packagephobia.now.sh/result?p=slim-fetch)
 phin | [![phin package size](https://packagephobia.now.sh/badge?p=phin)](https://packagephobia.now.sh/result?p=phin)
