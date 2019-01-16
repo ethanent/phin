@@ -420,4 +420,18 @@ w.add('JSON body content-type header', async (result) => {
 	result(res.statusCode === 200, res.body.toString())
 })
 
+w.add('Specify core HTTP options', async (result) => {
+	const res = await pp({
+		'url': 'http://localhost:5136/testContentTypeJSON',
+		'data': {
+			'hey': 'hi'
+		},
+		'core': {
+			'method': 'POST'
+		}
+	})
+
+	result(res.statusCode === 200, res.body.toString())
+})
+
 var httpServer = http.createServer(httpHandler).listen(5136, w.test)

@@ -1,6 +1,6 @@
 {
   "name": "phin",
-  "version": "3.2.4",
+  "version": "3.3.0",
   "description": "The ultra-lightweight Node.js HTTP client",
   "main": "lib/phin.min.js",
   "scripts": {
@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/ethanent/phin/issues"
   },
-  "homepage": "https://github.com/ethanent/phin#readme",
+  "homepage": "https://github.com/ethanent/phin",
   "devDependencies": {
     "jsdoc": "^3.5.5",
     "whew": "^1.1.3"

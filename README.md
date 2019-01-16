@@ -19,6 +19,7 @@ console.log(res.body)
 
 Note that the above should be in an async context! phin also provides an unpromisified version of the library.
 
+
 ## Install
 
 ```
@@ -49,7 +50,7 @@ await p({
 })
 ```
 
-## Unpromisified Usage
+### Unpromisified Usage
 
 ```js
 const p = require('phin').unpromisified
@@ -65,14 +66,14 @@ Simple parsing of JSON:
 // (In async function in this case.)
 
 const res = await p({
-	url: 'https://ethanent.me/name',
-	parse: 'json'
+	'url': 'https://ethanent.me/name',
+	'parse': 'json'
 })
 
 console.log(res.body.first)
 ```
 
-## Default options
+### Default Options
 
 ```js
 const ppostjson = p.defaults({
@@ -89,10 +90,26 @@ const res = await ppostjson('https://ethanent.me/somejson')
 // Do things with res.body?
 ```
 
+### Custom Core HTTP Options
+
+phin allows you to set [core HTTP options](https://nodejs.org/api/http.html#http_http_request_url_options_callback).
+
+```js
+await p({
+	'url': 'https://ethanent.me/name',
+	'core': {
+		'agent': myAgent // Assuming you'd already created myAgent earlier.
+	}
+})
+```
+
 
 ## Full Documentation
 
+There's a lot more which can be done with the phin library.
+
 See [the phin documentation](https://ethanent.github.io/phin/).
+
 
 ## phin vs. the Competition
 
