@@ -3,6 +3,7 @@
   "version": "3.3.0",
   "description": "The ultra-lightweight Node.js HTTP client",
   "main": "lib/phin.min.js",
+  "types": "types.d.ts",
   "scripts": {
     "test": "node ./tests/test.js",
     "prepublishOnly": "npm test",
