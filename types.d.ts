@@ -16,6 +16,7 @@ interface IOptionsBase {
   path?: string
 }
 
+// Form and data property has been written this way so they're mutually exclusive.
 type IWithData<T extends {}> = T & {
   data: {
     toString(): string
@@ -28,10 +29,10 @@ type IWithForm<T extends {}> = T & {
   }
 }
 
-declare function phin(options:
+declare function phin<T>(options:
   phin.IJSONResponseOptions |
   IWithData<phin.IJSONResponseOptions> |
-  IWithForm<phin.IJSONResponseOptions>): Promise<phin.IJSONResponse>
+  IWithForm<phin.IJSONResponseOptions>): Promise<phin.IJSONResponse<T>>
 
 declare function phin(options:
   phin.IStreamResponseOptions |
@@ -57,8 +58,8 @@ declare namespace phin {
     parse?: 'none'
   }
 
-  export interface IJSONResponse extends http.IncomingMessage {
-    body: object
+  export interface IJSONResponse<T> extends http.IncomingMessage {
+    body: T
   }
 
   export interface IStreamResponse extends http.IncomingMessage {
@@ -76,12 +77,12 @@ declare namespace phin {
 
   export let promisified: typeof phin
 
-  export function unpromisified(
+  export function unpromisified<T>(
     options:
       IJSONResponseOptions |
       IWithData<IJSONResponseOptions> |
       IWithForm<IJSONResponseOptions>,
-    callback: IErrorCallback | ICallback<IJSONResponse>): void
+    callback: IErrorCallback | ICallback<IJSONResponse<T>>): void
 
   export function unpromisified(
     options:
