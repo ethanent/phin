@@ -149,6 +149,10 @@ var httpHandler = (req, res) => {
 							return
 						}
 						break
+                                        case '/testemptyresponse':
+                                                res.writeHead(204)
+                                                res.end()
+                                                return
 					case '/simplepost':
 						res.writeHead(200)
 						res.end('Got your POST.')
@@ -271,6 +275,27 @@ w.add('Parse JSON', (result) => {
 			result(true, 'Parsed JSON properly.')
 		}
 		else result(false, 'Failed to parse JSON.')
+	})
+})
+
+w.add('Parse empty JSON response', (result) => {
+	p({
+		'url': 'http://localhost:5136/testemptyresponse',
+		'method': 'POST',
+		'timeout': 500,
+                'data': { 'hi': 'hey' },
+		'parse': 'json'
+	}, (err, res) => {
+                if (err) {
+                  console.error(err)
+                  return result(false, err.message)
+                }
+
+                // check that the res.body is parsed as {}
+		if (typeof res.body === 'object' && Object.keys(res.body).length === 0) {
+                    result(true, 'Parsed null response properly.')
+		}
+		else result(false, 'Failed to parse empty JSON response')
 	})
 })
 
