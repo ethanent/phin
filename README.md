@@ -127,4 +127,5 @@ got | [![got package size](https://packagephobia.now.sh/badge?p=got)](https://pa
 r2 | [![r2 package size](https://packagephobia.now.sh/badge?p=r2)](https://packagephobia.now.sh/result?p=r2)
 node-fetch | [![node-fetch package size](https://packagephobia.now.sh/badge?p=node-fetch)](https://packagephobia.now.sh/result?p=node-fetch)
 snekfetch | [![snekfetch package size](https://packagephobia.now.sh/badge?p=snekfetch)](https://packagephobia.now.sh/result?p=snekfetch)
+ky | [![install size](https://packagephobia.now.sh/badge?p=ky)](https://packagephobia.now.sh/result?p=ky)
 phin | [![phin package size](https://packagephobia.now.sh/badge?p=phin)](https://packagephobia.now.sh/result?p=phin)
