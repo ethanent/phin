@@ -1,6 +1,6 @@
 {
   "name": "phin",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "The ultra-lightweight Node.js HTTP client",
   "main": "lib/phin.min.js",
   "types": "types.d.ts",
@@ -33,7 +33,8 @@
     "whew": "^1.1.3"
   },
   "files": [
-    "lib/phin.min.js"
+    "lib/phin.min.js",
+    "types.d.ts"
   ],
   "engines": {
     "node": ">= 8"
