@@ -434,4 +434,19 @@ w.add('Specify core HTTP options', async (result) => {
 	result(res.statusCode === 200, res.body.toString())
 })
 
+w.add('Ensure that per-request options do not persist within defaults', async (result) => {
+	const def = pp.defaults({
+		'url': 'http://localhost:5136/testget',
+		'timeout': 1000
+	})
+
+	const r1 = await def({
+		'url': 'http://localhost:5136/notjson'
+	})
+
+	const r2 = await def({})
+
+	result(r1.body.toString() === 'hey' && r2.body.toString() === 'Hi.', r1.body.toString() + ' ' + r2.body.toString())
+})
+
 var httpServer = http.createServer(httpHandler).listen(5136, w.test)
