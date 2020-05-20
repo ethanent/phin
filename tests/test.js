@@ -183,11 +183,11 @@ w.add('Simple GET request', (result) => {
 })
 
 w.add('POST request with body', (result) => {
-	p({
-		'url': 'http://localhost:5136/testpost',
-		'method': 'POST',
-		'data': 'Hey there!'
-	}, (err, res) => {
+	const opts = Object.create(null)
+	opts.url = 'http://localhost:5136/testpost'
+	opts.method = 'POST'
+	opts.data = 'Hey there!'
+	p(opts, (err, res) => {
 		if (err) {
 			result(false, err)
 			return
