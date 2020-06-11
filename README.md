@@ -4,7 +4,7 @@
 
 > The ultra-lightweight Node.js HTTP client
 
-[Full documentation](https://ethanent.github.io/phin/) | [GitHub](https://github.com/ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
+[Full documentation](https://ethanent.github.io/phin/global.html#phin) | [GitHub](https://github.com/ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
 
 
 ## Simple Usage
