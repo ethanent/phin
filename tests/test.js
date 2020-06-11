@@ -90,6 +90,10 @@ var httpHandler = (req, res) => {
 							res.end('Client didn\'t send expected data.')
 						}
 						break
+					case '/testemptyresponse':
+						res.writeHead(204)
+						res.end()
+						return
 					case '/testContentTypeJSON':
 						if (req.headers['content-type'] === 'application/json') {
 							res.writeHead(200)
@@ -447,6 +451,28 @@ w.add('Ensure that per-request options do not persist within defaults', async (r
 	const r2 = await def({})
 
 	result(r1.body.toString() === 'hey' && r2.body.toString() === 'Hi.', r1.body.toString() + ' ' + r2.body.toString())
+})
+
+w.add('Parse empty JSON response', (result) => {
+	p({
+		'url': 'http://localhost:5136/testemptyresponse',
+		'method': 'POST',
+		'timeout': 500,
+		'data': {
+			'hi': 'hey'
+		},
+		'parse': 'json'
+	}, (err, res) => {
+		if (err) {
+			return result(false, err.message)
+		}
+
+		// Check that the res.body provided is null
+		if (res.body === null) {
+			result(true, 'Parsed null response properly')
+		}
+		else result(false, 'Failed to parse empty JSON response')
+	})
 })
 
 var httpServer = http.createServer(httpHandler).listen(5136, w.test)
