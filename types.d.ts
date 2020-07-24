@@ -3,7 +3,7 @@
 import * as http from 'http'
 
 interface IOptionsBase {
-  url: string
+  url: string | URL
   method?: string
   headers?: object
   core?: http.ClientRequestArgs
