@@ -105,7 +105,7 @@ await p({
 
 There's a lot more which can be done with the Phin library.
 
-See [the Phin documentation](https://ethanent.github.io/phin/).
+See [the Phin documentation](https://ethanent.github.io/phin/global.html).
 
 
 ## Phin vs. the Competition
