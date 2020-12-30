@@ -1,6 +1,7 @@
 // Default Options feature is not supported because it's basically impossible to write strongly-typed definitions for it.
 
 import * as http from 'http'
+import { URL } from 'url';
 
 interface IOptionsBase {
   url: string | URL
