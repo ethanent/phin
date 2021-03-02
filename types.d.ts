@@ -17,23 +17,10 @@ interface IOptionsBase {
   path?: string
 }
 
-// Form and data property has been written this way so they're mutually exclusive.
-type IWithData<T extends {}> = T & {
-  data: {
-    toString(): string
-  }
-}
-
-type IWithForm<T extends {}> = T & {
-  form: {
-    [index: string]: string
-  }
-}
-
 declare function phin<T>(options:
   phin.IJSONResponseOptions |
-  IWithData<phin.IJSONResponseOptions> |
-  IWithForm<phin.IJSONResponseOptions>): Promise<phin.IJSONResponse<T>>
+  phin.IWithData<phin.IJSONResponseOptions> |
+  phin.IWithForm<phin.IJSONResponseOptions>): Promise<phin.IJSONResponse<T>>
 
 declare function phin(options:
   phin.IStringResponseOptions |
@@ -42,16 +29,27 @@ declare function phin(options:
 
 declare function phin(options:
   phin.IStreamResponseOptions |
-  IWithData<phin.IStreamResponseOptions> |
-  IWithForm<phin.IStreamResponseOptions>): Promise<phin.IStreamResponse>
+  phin.IWithData<phin.IStreamResponseOptions> |
+  phin.IWithForm<phin.IStreamResponseOptions>): Promise<phin.IStreamResponse>
 
 declare function phin(options:
   phin.IOptions |
-  IWithData<phin.IOptions> |
-  IWithForm<phin.IOptions> |
+  phin.IWithData<phin.IOptions> |
+  phin.IWithForm<phin.IOptions> |
   string): Promise<phin.IResponse>
 
 declare namespace phin {
+  // Form and data property has been written this way so they're mutually exclusive.
+  export type IWithData<T extends IOptionsBase> = T & {
+    data: string | Buffer | object;
+  }
+  
+  export type IWithForm<T extends IOptionsBase> = T & {
+    form: {
+      [index: string]: string
+    }
+  }
+
   export interface IJSONResponseOptions extends IOptionsBase {
     parse: 'json'
   }
