@@ -36,6 +36,11 @@ declare function phin<T>(options:
   IWithForm<phin.IJSONResponseOptions>): Promise<phin.IJSONResponse<T>>
 
 declare function phin(options:
+  phin.IStringResponseOptions |
+  IWithData<phin.IStringResponseOptions> |
+  IWithForm<phin.IStringResponseOptions>): Promise<phin.IStringResponse>
+
+declare function phin(options:
   phin.IStreamResponseOptions |
   IWithData<phin.IStreamResponseOptions> |
   IWithForm<phin.IStreamResponseOptions>): Promise<phin.IStreamResponse>
@@ -51,6 +56,10 @@ declare namespace phin {
     parse: 'json'
   }
 
+  export interface IStringResponseOptions extends IOptionsBase {
+    parse: 'string';
+  }
+
   export interface IStreamResponseOptions extends IOptionsBase {
     stream: true
   }
@@ -63,12 +72,16 @@ declare namespace phin {
     body: T
   }
 
+  export interface IStringResponse extends http.IncomingMessage {
+    body: string;
+  }
+
   export interface IStreamResponse extends http.IncomingMessage {
     stream: http.IncomingMessage
   }
 
   export interface IResponse extends http.IncomingMessage {
-    body: string
+    body: Buffer;
   }
 
   // NOTE: Typescript cannot infer type of union callback on the consumer side
@@ -84,6 +97,13 @@ declare namespace phin {
       IWithData<IJSONResponseOptions> |
       IWithForm<IJSONResponseOptions>,
     callback: IErrorCallback | ICallback<IJSONResponse<T>>): void
+
+  export function unpromisified(
+    options:
+      IStringResponseOptions |
+      IWithData<IStringResponseOptions> |
+      IWithForm<IStringResponseOptions>,
+    callback: IErrorCallback | ICallback<IStringResponse>): void
 
   export function unpromisified(
     options:
