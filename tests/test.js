@@ -278,6 +278,44 @@ w.add('Parse JSON', (result) => {
 	})
 })
 
+w.add('Parse string', (result) => {
+	p({
+		'url': 'http://localhost:5136/testget',
+		'method': 'GET',
+		'parse': 'string',
+	}, (err, res) => {
+		if (!err && typeof res.body === 'string' && res.body === 'Hi.') {
+			result(true, 'Parsed string properly.')
+		}
+		else result(false, 'Failed to parse string.')
+	})
+})
+
+w.add('Parse "none" returns Buffer', (result) => {
+	p({
+		'url': 'http://localhost:5136/testget',
+		'method': 'GET',
+		'parse': 'none',
+	}, (err, res) => {
+		if (!err && res.body instanceof Buffer && Buffer.from('Hi.').equals(res.body)) {
+			result(true, 'Buffer returned properly.')
+		}
+		else result(false, 'Failed to return Buffer.')
+	})
+})
+
+w.add('Default no parse returns Buffer', (result) => {
+	p({
+		'url': 'http://localhost:5136/testget',
+		'method': 'GET',
+	}, (err, res) => {
+		if (!err && res.body instanceof Buffer && Buffer.from('Hi.').equals(res.body)) {
+			result(true, 'Buffer returned properly.')
+		}
+		else result(false, 'Failed to return Buffer.')
+	})
+})
+
 w.add('Send object', (result) => {
 	p({
 		'url': 'http://localhost:5136/testjson',
