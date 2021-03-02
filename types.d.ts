@@ -24,8 +24,8 @@ declare function phin<T>(options:
 
 declare function phin(options:
   phin.IStringResponseOptions |
-  IWithData<phin.IStringResponseOptions> |
-  IWithForm<phin.IStringResponseOptions>): Promise<phin.IStringResponse>
+  phin.IWithData<phin.IStringResponseOptions> |
+  phin.IWithForm<phin.IStringResponseOptions>): Promise<phin.IStringResponse>
 
 declare function phin(options:
   phin.IStreamResponseOptions |
