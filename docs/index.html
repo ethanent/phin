@@ -47,17 +47,16 @@
 
 <hr>
 <blockquote>
-<p>The ultra-lightweight Node.js HTTP client</p>
+<p>The lightweight Node.js HTTP client</p>
 </blockquote>
-<p><a href="https://ethanent.github.io/phin/">Full documentation</a> | <a href="https://github.com/ethanent/phin">GitHub</a> | <a href="https://www.npmjs.com/package/phin">NPM</a></p>
+<p><a href="https://ethanent.github.io/phin/global.html">Full documentation</a> | <a href="https://github.com/ethanent/phin">GitHub</a> | <a href="https://www.npmjs.com/package/phin">NPM</a></p>
 <h2>Simple Usage</h2><pre class="prettyprint source lang-javascript"><code>const p = require('phin')
 
 const res = await p('https://ethanent.me')
 
-console.log(res.body)</code></pre><p>Note that the above should be in an async context! phin also provides an unpromisified version of the library.</p>
-<h2>Install</h2><pre class="prettyprint source"><code>npm install phin</code></pre><h2>Why phin?</h2><p>phin is <strong>trusted</strong> by some really important projects. The hundreds of contributors at <a href="https://github.com/less/less.js">Less</a>, for example, depend on phin as part of their development process.</p>
-<p>Also, phin is super <strong>lightweight</strong>. Like <strong>99.8% smaller than request</strong> lightweight. To compare to other libraries, see <a href="https://github.com/ethanent/phin/blob/master/README.md#phin-vs-the-competition">phin vs. the Competition</a>.</p>
-<p><img src="https://pbs.twimg.com/media/DSPF9TaUQAA0tIe.jpg:large" alt="phin became 33% lighter with release 2.7.0!"/></p>
+console.log(res.body)</code></pre><p>Note that the above should be in an async context! Phin also provides an unpromisified version of the library.</p>
+<h2>Install</h2><pre class="prettyprint source"><code>npm install phin</code></pre><h2>Why Phin?</h2><p>Phin is relied upon by important projects and large companies. The hundreds of contributors at <a href="https://github.com/less/less.js">Less</a>, for example, depend on Phin as part of their development process.</p>
+<p>Also, Phin is very lightweight. To compare to other libraries, see <a href="https://github.com/ethanent/phin/blob/master/README.md#phin-vs-the-competition">Phin vs. the Competition</a>.</p>
 <h2>Quick Demos</h2><p>Simple POST:</p>
 <pre class="prettyprint source lang-js"><code>await p({
     url: 'https://ethanent.me',
@@ -88,15 +87,15 @@ console.log(res.body.first)</code></pre><h3>Default Options</h3><pre class="pret
 const res = await ppostjson('https://ethanent.me/somejson')
 // ^ An options object could also be used here to set other options.
 
-// Do things with res.body?</code></pre><h3>Custom Core HTTP Options</h3><p>phin allows you to set <a href="https://nodejs.org/api/http.html#http_http_request_url_options_callback">core HTTP options</a>.</p>
+// Do things with res.body?</code></pre><h3>Custom Core HTTP Options</h3><p>Phin allows you to set <a href="https://nodejs.org/api/http.html#http_http_request_url_options_callback">core HTTP options</a>.</p>
 <pre class="prettyprint source lang-js"><code>await p({
     'url': 'https://ethanent.me/name',
     'core': {
         'agent': myAgent // Assuming you'd already created myAgent earlier.
     }
-})</code></pre><h2>Full Documentation</h2><p>There's a lot more which can be done with the phin library.</p>
-<p>See <a href="https://ethanent.github.io/phin/">the phin documentation</a>.</p>
-<h2>phin vs. the Competition</h2><p>phin is a very lightweight library, yet it contains all of the common HTTP client features included in competing libraries!</p>
+})</code></pre><h2>Full Documentation</h2><p>There's a lot more which can be done with the Phin library.</p>
+<p>See <a href="https://ethanent.github.io/phin/global.html">the Phin documentation</a>.</p>
+<h2>Phin vs. the Competition</h2><p>Phin is a very lightweight library, yet it contains all of the common HTTP client features included in competing libraries!</p>
 <p>Here's a size comparison table:</p>
 <table>
 <thead>
@@ -115,16 +114,16 @@ const res = await ppostjson('https://ethanent.me/somejson')
 <td><a href="https://packagephobia.now.sh/result?p=superagent"><img src="https://packagephobia.now.sh/badge?p=superagent" alt="superagent package size"></a></td>
 </tr>
 <tr>
-<td>isomorphic-fetch</td>
-<td><a href="https://packagephobia.now.sh/result?p=isomorphic-fetch"><img src="https://packagephobia.now.sh/badge?p=isomorphic-fetch" alt="isomorphic-fetch package size"></a></td>
+<td>got</td>
+<td><a href="https://packagephobia.now.sh/result?p=got"><img src="https://packagephobia.now.sh/badge?p=got" alt="got package size"></a></td>
 </tr>
 <tr>
 <td>axios</td>
 <td><a href="https://packagephobia.now.sh/result?p=axios"><img src="https://packagephobia.now.sh/badge?p=axios" alt="axios package size"></a></td>
 </tr>
 <tr>
-<td>got</td>
-<td><a href="https://packagephobia.now.sh/result?p=got"><img src="https://packagephobia.now.sh/badge?p=got" alt="got package size"></a></td>
+<td>isomorphic-fetch</td>
+<td><a href="https://packagephobia.now.sh/result?p=isomorphic-fetch"><img src="https://packagephobia.now.sh/badge?p=isomorphic-fetch" alt="isomorphic-fetch package size"></a></td>
 </tr>
 <tr>
 <td>r2</td>
@@ -133,10 +132,6 @@ const res = await ppostjson('https://ethanent.me/somejson')
 <tr>
 <td>node-fetch</td>
 <td><a href="https://packagephobia.now.sh/result?p=node-fetch"><img src="https://packagephobia.now.sh/badge?p=node-fetch" alt="node-fetch package size"></a></td>
-</tr>
-<tr>
-<td>snekfetch</td>
-<td><a href="https://packagephobia.now.sh/result?p=snekfetch"><img src="https://packagephobia.now.sh/badge?p=snekfetch" alt="snekfetch package size"></a></td>
 </tr>
 <tr>
 <td>phin</td>
@@ -160,7 +155,7 @@ const res = await ppostjson('https://ethanent.me/somejson')
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jun 03 2019 19:40:29 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Mar 01 2021 21:08:53 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>
