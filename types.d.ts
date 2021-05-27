@@ -17,26 +17,12 @@ interface IOptionsBase {
   path?: string
 }
 
-declare function phin<T>(options:
-  phin.IJSONResponseOptions |
-  phin.IWithData<phin.IJSONResponseOptions> |
-  phin.IWithForm<phin.IJSONResponseOptions>): Promise<phin.IJSONResponse<T>>
+type Options<T extends IOptionsBase> = T | phin.IWithData<T> | phin.IWithForm<T>
 
-declare function phin(options:
-  phin.IStringResponseOptions |
-  IWithData<phin.IStringResponseOptions> |
-  IWithForm<phin.IStringResponseOptions>): Promise<phin.IStringResponse>
-
-declare function phin(options:
-  phin.IStreamResponseOptions |
-  phin.IWithData<phin.IStreamResponseOptions> |
-  phin.IWithForm<phin.IStreamResponseOptions>): Promise<phin.IStreamResponse>
-
-declare function phin(options:
-  phin.IOptions |
-  phin.IWithData<phin.IOptions> |
-  phin.IWithForm<phin.IOptions> |
-  string): Promise<phin.IResponse>
+declare function phin<T>(options: Options<phin.IJSONResponseOptions>): Promise<phin.IJSONResponse<T>>
+declare function phin<T>(options: Options<phin.IStringResponseOptions>): Promise<phin.IStringResponse>
+declare function phin(options: Options<phin.IStreamResponseOptions>): Promise<phin.IStreamResponse>
+declare function phin(options: Options<phin.IOptions> | string): Promise<phin.IResponse>
 
 declare namespace phin {
   // Form and data property has been written this way so they're mutually exclusive.
