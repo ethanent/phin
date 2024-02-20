@@ -9,6 +9,7 @@ interface IOptionsBase {
   headers?: object
   core?: http.ClientRequestArgs
   followRedirects?: boolean
+  strict?: boolean
   stream?: boolean
   compression?: boolean
   timeout?: number
@@ -43,7 +44,7 @@ declare namespace phin {
   export type IWithData<T extends IOptionsBase> = T & {
     data: string | Buffer | object;
   }
-  
+
   export type IWithForm<T extends IOptionsBase> = T & {
     form: {
       [index: string]: string
