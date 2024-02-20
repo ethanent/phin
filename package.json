@@ -6,7 +6,8 @@
   "types": "types.d.ts",
   "scripts": {
     "test": "node ./tests/test.js",
-    "prepublishOnly": "npm test",
+    "auditdeps": "npm audit --production",
+    "prepublishOnly": "npm test && npm run auditdeps",
     "gendocs": "rm -r docs || true && jsdoc -R README.md -d ./docs lib/phin.js"
   },
   "repository": {
