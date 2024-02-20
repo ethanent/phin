@@ -15,6 +15,7 @@ interface IOptionsBase {
   hostname?: string
   port?: number
   path?: string
+  query?: object
 }
 
 declare function phin<T>(options:

@@ -66,8 +66,13 @@ var httpHandler = (req, res) => {
 					compressor.end()
 					break
 				default:
-					res.writeHead(404)
-					res.end('Not a valid test endpoint')
+					if (req.url.includes('/testgetwithqs')) {
+						res.writeHead(200)
+						res.end('Hi.')
+					} else {
+						res.writeHead(404)
+						res.end('Not a valid test endpoint')
+					}
 					break
 			}
 			break
@@ -182,6 +187,52 @@ w.add('Simple GET request', (result) => {
 		}
 		else {
 			result(false, 'Recieved unexpected data. Status code: ' + res.statusCode)
+		}
+	})
+})
+
+w.add('GET request with query', (result) => {
+	p({
+		url: 'http://localhost:5136/testgetwithqs',
+		method: 'GET',
+		query: {param1: 1, param2: 'abc'}
+	}, (err, res) => {
+		if (err) {
+			result(false, err)
+			return
+		}
+		if (res.statusCode === 200 && res.body.toString() === 'Hi.') {
+			if (res.req.path === '/testgetwithqs?param1=1&param2=abc') {
+				result(true, 'Requested expected path.')
+			} else {
+				result(false, 'Requested unexpected path: ' + res.req.path);
+			}
+		}
+		else {
+			result(false, 'Received unexpected data. Status code: ' + res.statusCode)
+		}
+	})
+})
+
+w.add('GET request with query and qs in URL', (result) => {
+	p({
+		url: 'http://localhost:5136/testgetwithqs?param0=first',
+		method: 'GET',
+		query: {param1: 1, param2: 'abc'}
+	}, (err, res) => {
+		if (err) {
+			result(false, err)
+			return
+		}
+		if (res.statusCode === 200 && res.body.toString() === 'Hi.') {
+			if (res.req.path === '/testgetwithqs?param0=first&param1=1&param2=abc') {
+				result(true, 'Requested expected path.')
+			} else {
+				result(false, 'Requested unexpected path: ' + res.req.path);
+			}
+		}
+		else {
+			result(false, 'Received unexpected data. Status code: ' + res.statusCode)
 		}
 	})
 })
