@@ -6,6 +6,9 @@
 
 [Full documentation](https://ethanent.github.io/phin/global.html) | [GitHub](https://github.com/ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
 
+## Deprecated
+
+This package is deprecated and should not be used. Please see [#91](https://github.com/ethanent/phin/issues/91) for more information.
 
 ## Simple Usage
 
