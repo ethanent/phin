@@ -4,8 +4,6 @@
 
 > The lightweight Node.js HTTP client
 
-[Full documentation](https://ethanent.github.io/phin/global.html) | [GitHub](https://github.com/ethanent/phin) | [NPM](https://www.npmjs.com/package/phin)
-
 ## Deprecated
 
 This package is deprecated and should not be used. Please see [#91](https://github.com/ethanent/phin/issues/91) for more information.
@@ -15,7 +13,7 @@ This package is deprecated and should not be used. Please see [#91](https://gith
 ```javascript
 const p = require('phin')
 
-const res = await p('https://ethanent.me')
+const res = await p('https://example.com')
 
 console.log(res.body)
 ```
@@ -42,7 +40,7 @@ Simple POST:
 
 ```js
 await p({
-	url: 'https://ethanent.me',
+	url: 'https://example.com',
 	method: 'POST',
 	data: {
 		hey: 'hi'
@@ -55,7 +53,7 @@ await p({
 ```js
 const p = require('phin').unpromisified
 
-p('https://ethanent.me', (err, res) => {
+p('https://example.com', (err, res) => {
 	if (!err) console.log(res.body)
 })
 ```
@@ -66,7 +64,7 @@ Simple parsing of JSON:
 // (In async function in this case.)
 
 const res = await p({
-	'url': 'https://ethanent.me/name',
+	'url': 'https://example.com/',
 	'parse': 'json'
 })
 
@@ -84,32 +82,24 @@ const ppostjson = p.defaults({
 
 // In async function...
 
-const res = await ppostjson('https://ethanent.me/somejson')
+const res = await ppostjson('https://example.com/somejson')
 // ^ An options object could also be used here to set other options.
 
 // Do things with res.body?
 ```
 
-### Custom Core HTTP Options
+### Custom Axios HTTP Options
 
-Phin allows you to set [core HTTP options](https://nodejs.org/api/http.html#http_http_request_url_options_callback).
+Phin allows you to set [Axios HTTP options](https://github.com/axios/axios?tab=readme-ov-file#request-config).
 
 ```js
 await p({
-	'url': 'https://ethanent.me/name',
-	'core': {
-		'agent': myAgent // Assuming you'd already created myAgent earlier.
+	'url': 'https://example.com/name',
+	'axiosOpts': {
+		httpAgent: myAgent // Assuming you'd already created myAgent earlier.
 	}
 })
 ```
-
-
-## Full Documentation
-
-There's a lot more which can be done with the Phin library.
-
-See [the Phin documentation](https://ethanent.github.io/phin/global.html).
-
 
 ## Phin vs. the Competition
 

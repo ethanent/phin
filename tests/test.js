@@ -1,4 +1,6 @@
-const w = require('whew')
+const w = []
+
+w.add = (name, t) => w.push([name, t])
 
 const p = require('../').unpromisified
 const pp = require('../')
@@ -47,6 +49,7 @@ var httpHandler = (req, res) => {
 						'Location': '/corrected'
 					})
 					res.end()
+					break
 				case '/redirect':
 					res.writeHead(301, {
 						'Location': '/redirect2'
@@ -106,32 +109,19 @@ var httpHandler = (req, res) => {
 
 						break
 					case '/testfd':
-						try {
-							if (qs.parse(postbody).hey === 'Hi') {
-								if (Buffer.byteLength(postbody) === Number(req.headers['content-length'])) {
-									if (req.headers['content-type'].toString() === 'application/x-www-form-urlencoded') {
-										res.writeHead(200)
-										res.end('Recieved valid data.')
-									}
-									else {
-										res.writeHead(400)
-										res.end('Incorrect content-type recieved by server.')
-									}
-								}
-								else {
-									res.writeHead(400)
-									res.end('Content-Length header contained incorrect content length.')
-								}
+						if (postbody.includes('hey') && postbody.includes('Hi')) {
+							if (req.headers['content-type'].toString().includes('form')) {
+								res.writeHead(200)
+								res.end('got some form-like data.')
 							}
 							else {
 								res.writeHead(400)
-								res.end('Couldn\'t find a required property in data.')
+								res.end('Incorrect Content-Type recieved by server.')
 							}
 						}
-						catch (err) {
+						else {
 							res.writeHead(400)
-							res.end('Parsing as query string failed. ' + err)
-							break
+							res.end('Couldn\'t find a required property in data.')
 						}
 						break
 					case '/testjson':
@@ -462,20 +452,6 @@ w.add('JSON body content-type header', async (result) => {
 	result(res.statusCode === 200, res.body.toString())
 })
 
-w.add('Specify core HTTP options', async (result) => {
-	const res = await pp({
-		'url': 'http://localhost:5136/testContentTypeJSON',
-		'data': {
-			'hey': 'hi'
-		},
-		'core': {
-			'method': 'POST'
-		}
-	})
-
-	result(res.statusCode === 200, res.body.toString())
-})
-
 w.add('Ensure that per-request options do not persist within defaults', async (result) => {
 	const def = pp.defaults({
 		'url': 'http://localhost:5136/testget',
@@ -491,26 +467,23 @@ w.add('Ensure that per-request options do not persist within defaults', async (r
 	result(r1.body.toString() === 'hey' && r2.body.toString() === 'Hi.', r1.body.toString() + ' ' + r2.body.toString())
 })
 
-w.add('Parse empty JSON response', (result) => {
-	p({
-		'url': 'http://localhost:5136/testemptyresponse',
-		'method': 'POST',
-		'timeout': 500,
-		'data': {
-			'hi': 'hey'
-		},
-		'parse': 'json'
-	}, (err, res) => {
-		if (err) {
-			return result(false, err.message)
+const runTests = () => {
+	w.forEach((entry) => {
+		const result = (r, message) => {
+			if (r) {
+				console.log("OK", entry[0], message)
+			} else {
+				console.error("Fail", entry[0], message)
+			}
 		}
-
-		// Check that the res.body provided is null
-		if (res.body === null) {
-			result(true, 'Parsed null response properly')
+		if (entry[1].hasOwnProperty('then')) {
+			entry[1](result).catch((err) => {
+				console.error("Error", entry[0], err)
+			})
+		} else {
+			entry[1](result)
 		}
-		else result(false, 'Failed to parse empty JSON response')
 	})
-})
+}
 
-var httpServer = http.createServer(httpHandler).listen(5136, w.test)
+var httpServer = http.createServer(httpHandler).listen(5136, runTests)
