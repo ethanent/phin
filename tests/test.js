@@ -452,7 +452,7 @@ w.add('JSON body content-type header', async (result) => {
 	result(res.statusCode === 200, res.body.toString())
 })
 
-w.add('Ensure that per-request options do not persist within defaults', async (result) => {
+w.add('Ensure that per-request options do not persist between defaults', async (result) => {
 	const def = pp.defaults({
 		'url': 'http://localhost:5136/testget',
 		'timeout': 1000
@@ -467,23 +467,36 @@ w.add('Ensure that per-request options do not persist within defaults', async (r
 	result(r1.body.toString() === 'hey' && r2.body.toString() === 'Hi.', r1.body.toString() + ' ' + r2.body.toString())
 })
 
-const runTests = () => {
-	w.forEach((entry) => {
-		const result = (r, message) => {
-			if (r) {
-				console.log("OK", entry[0], message)
-			} else {
-				console.error("Fail", entry[0], message)
-			}
-		}
-		if (entry[1].hasOwnProperty('then')) {
-			entry[1](result).catch((err) => {
-				console.error("Error", entry[0], err)
-			})
+let fail = false
+
+const runTest = (i) => {
+	const entry = w[i]
+	console.log(i, "running", entry[0])
+	const result = (r, message) => {
+		if (r) {
+			console.log("> OK", entry[0], message)
 		} else {
-			entry[1](result)
+			fail = true
+			console.error("> Fail", entry[0], message)
 		}
-	})
+		if (w.length > i+1) {
+			runTest(i+1)
+		} else {
+			process.exit(fail ? 1 : 0)
+		}
+	}
+	if (entry[1].hasOwnProperty('then')) {
+		entry[1](result).catch((err) => {
+			fail = true
+			console.error("> Error", entry[0], err)
+		})
+	} else {
+		entry[1](result)
+	}
+}
+
+const runTests = () => {
+	runTest(0)
 }
 
 var httpServer = http.createServer(httpHandler).listen(5136, runTests)
