@@ -4,9 +4,11 @@
 
 > The lightweight Node.js HTTP client
 
-## Deprecated
+## Deprecation warning
 
-This package is deprecated and should not be used. Please see [#91](https://github.com/ethanent/phin/issues/91) for more information.
+Some version of this package are deprecated and should not be used. Ensure you are using a non-deprecated version.
+
+See [#91](https://github.com/ethanent/phin/issues/91) for more information.
 
 ## Simple Usage
 
