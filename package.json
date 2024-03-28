@@ -6,8 +6,7 @@
   "types": "types.d.ts",
   "scripts": {
     "test": "node ./tests/test.js",
-    "prepublishOnly": "npm test",
-    "gendocs": "rm -r docs || true && jsdoc -R README.md -d ./docs lib/phin.js"
+    "prepublishOnly": "npm test"
   },
   "repository": {
     "type": "git",
@@ -28,10 +27,6 @@
     "url": "https://github.com/ethanent/phin/issues"
   },
   "homepage": "https://github.com/ethanent/phin",
-  "devDependencies": {
-    "jsdoc": "^3.5.5",
-    "whew": "^1.1.3"
-  },
   "files": [
     "lib/phin.js",
     "types.d.ts"

@@ -1,5 +1,3 @@
-const w = require('whew')
-
 const p = require('../').unpromisified
 const pp = require('../')
 
@@ -47,6 +45,7 @@ var httpHandler = (req, res) => {
 						'Location': '/corrected'
 					})
 					res.end()
+					break
 				case '/redirect':
 					res.writeHead(301, {
 						'Location': '/redirect2'
@@ -170,6 +169,10 @@ var httpHandler = (req, res) => {
 			break
 	}
 }
+
+const w = []
+
+w.add = (name, t) => w.push([name, t])
 
 w.add('Simple GET request', (result) => {
 	p('http://localhost:5136/testget', (err, res) => {
@@ -513,4 +516,36 @@ w.add('Parse empty JSON response', (result) => {
 	})
 })
 
-var httpServer = http.createServer(httpHandler).listen(5136, w.test)
+let fail = false
+
+const runTest = (i) => {
+	const entry = w[i]
+	console.log(i, "running", entry[0])
+	const result = (r, message) => {
+		if (r) {
+			console.log("> OK", entry[0], message)
+		} else {
+			fail = true
+			console.error("> Fail", entry[0], message)
+		}
+		if (w.length > i+1) {
+			runTest(i+1)
+		} else {
+			process.exit(fail ? 1 : 0)
+		}
+	}
+	if (entry[1].hasOwnProperty('then')) {
+		entry[1](result).catch((err) => {
+			fail = true
+			console.error("> Error", entry[0], err)
+		})
+	} else {
+		entry[1](result)
+	}
+}
+
+const runTests = () => {
+	runTest(0)
+}
+
+var httpServer = http.createServer(httpHandler).listen(5136, runTests)
