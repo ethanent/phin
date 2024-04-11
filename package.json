@@ -1,6 +1,6 @@
 {
   "name": "phin",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "The ultra-lightweight Node.js HTTP client",
   "main": "lib/phin.js",
   "types": "types.d.ts",
