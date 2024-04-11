@@ -35,6 +35,6 @@
     "node": ">= 8"
   },
   "dependencies": {
-    "centra": "^2.6.0"
+    "centra": "^2.7.0"
   }
 }
